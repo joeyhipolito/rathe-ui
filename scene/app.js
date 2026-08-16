@@ -843,7 +843,17 @@ function wireReveals() {
   const io = new IntersectionObserver(es => {
     es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('rv-in'); io.unobserve(e.target); } });
   }, { rootMargin: '0px 0px -12% 0px', threshold: .05 });
-  $$('[data-rv]').forEach(el => io.observe(el));
+
+  /* Anything already on screen at load is revealed outright, because the
+     observer's -12% bottom margin excludes the last slice of the first
+     viewport. That is where the hero's fine print and the scroll cue sit, so
+     both stayed at opacity 0 until the reader scrolled, and the cue telling
+     them to scroll was the thing being hidden. */
+  $$('[data-rv]').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) el.classList.add('rv-in');
+    else io.observe(el);
+  });
 }
 
 function fitWordmark() {
@@ -889,7 +899,9 @@ function wireCursor() {
   if (!matchMedia('(pointer:fine)').matches || REDUCE) return;
   document.body.classList.add('cursor-on');
   const cur = $('#cursor');
-  let cx = -100, cy = -100, txx = -100, tyy = -100;
+  /* Start inside the frame. Parking the cursor off-canvas extended the
+     document scroll width and made the page scroll sideways. */
+  let cx = 0, cy = 0, txx = 0, tyy = 0;
   addEventListener('pointermove', e => {
     txx = e.clientX; tyy = e.clientY;
     RIG.tmx = (e.clientX / vpW() - .5) * 2;

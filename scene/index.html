@@ -46,7 +46,10 @@ user's referenced video and repo (MengTo/kage PROMPT.md); original code.
   --sans:system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+/* clip, not hidden: the grain layer sits at inset:-1px and the custom cursor
+   parks outside the frame before the first pointer move, and both were
+   extending the scroll width, so the page scrolled sideways at every size. */
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto;overflow-x:clip}
 body{
   margin:0;background:var(--ink);color:var(--bone);
   font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;
@@ -115,10 +118,10 @@ h1,h2,h3{margin:0;font-weight:600}
 .brand-word .amp{color:var(--blood-hi)}
 .brand-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .nav-links{display:flex;align-items:center;gap:30px}
-.nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);transition:color .3s}
+.nav-links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);transition:color .3s;white-space:nowrap}
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--bone)}
 .nav-links a .n{color:var(--blood-hi);font-size:9px;margin-right:7px}
-.nav-cta{border:1px solid var(--line);padding:11px 20px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone);transition:border-color .3s,background .3s,color .3s}
+.nav-cta{border:1px solid var(--line);padding:11px 20px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone);transition:border-color .3s,background .3s,color .3s;white-space:nowrap}
 .nav-cta:hover,.nav-cta:focus-visible{border-color:var(--blood-hi);background:var(--blood);color:#fff}
 #menu-btn{display:none;width:40px;height:40px;position:relative;z-index:95}
 #menu-btn span{position:absolute;left:8px;right:8px;height:1.5px;background:var(--bone);transition:transform .4s var(--ease),opacity .3s}
@@ -289,6 +292,17 @@ body.cursor-on a,body.cursor-on button{cursor:none}
 @media (pointer:coarse){#cursor{display:none}}
 
 /* ============================================================ responsive */
+/* The bar gives things up in order of how little they carry: the studio tag
+   first, then the tracking and gaps, then the links themselves. */
+@media (max-width:1200px){
+  .brand-tag{display:none}
+}
+@media (max-width:1100px){
+  .nav-links{gap:20px}
+  .nav-links a{font-size:10px;letter-spacing:.12em}
+  .nav-links a .n{margin-right:5px}
+  .nav-cta{padding:10px 14px;font-size:10px;letter-spacing:.12em}
+}
 @media (max-width:960px){
   .nav-links{display:none}
   #menu-btn{display:block}
