@@ -34,7 +34,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
   const innerRef = React.useRef<HTMLInputElement | null>(null);
   React.useImperativeHandle(ref, () => innerRef.current as HTMLInputElement, []);
 
-  // There is no `indeterminate` HTML attribute — React cannot render it, so the
+  // There is no `indeterminate` HTML attribute, React cannot render it, so the
   // property has to be written to the node after every commit that changes it.
   React.useEffect(() => {
     const node = innerRef.current;
@@ -62,7 +62,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
         .join(" ")}
     >
       <div className="rathe-checkbox__row">
-        {/* The input keeps its box — appearance:none restyles it without
+        {/* The input keeps its box, appearance:none restyles it without
             removing it from the accessibility tree or the tab order. The mark
             is a sibling overlay because pseudo-elements on form controls are
             not reliable across browsers. */}

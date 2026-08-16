@@ -11,7 +11,7 @@ export interface DialogProps
   /** Controlled visibility. The element stays mounted when closed. */
   open: boolean;
   /**
-   * Called for every close path — the close button, a backdrop click, and Esc.
+   * Called for every close path, the close button, a backdrop click, and Esc.
    * The caller owns `open`, so nothing closes without going through here.
    */
   onClose: () => void;

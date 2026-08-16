@@ -2,7 +2,7 @@ import * as React from "react";
 import "./Field.css";
 
 type FieldOwnProps = {
-  /** Visible label. Always rendered — a placeholder is not a label. */
+  /** Visible label. Always rendered, a placeholder is not a label. */
   label: React.ReactNode;
   /** Supporting text, announced before the error. */
   hint?: React.ReactNode;

@@ -29,7 +29,7 @@ function toLength(value: number | string | undefined): string | undefined {
 
 /**
  * A skeleton is `aria-hidden` on purpose. Announcing a placeholder bar is noise
- * — what a screen reader user needs is one polite "Loading standings" and then
+ * What a screen reader user needs is one polite "Loading standings" and then
  * the real content, which is why the live region is a separate node the
  * consumer owns (or gets from SkeletonText).
  */
@@ -79,7 +79,7 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function
 
 /**
  * Skeleton plus the live region it needs. The announcement sits outside the
- * aria-hidden subtree — nesting it inside would hide the one thing that is
+ * aria-hidden subtree, nesting it inside would hide the one thing that is
  * supposed to be heard.
  */
 export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(

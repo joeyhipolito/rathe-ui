@@ -74,7 +74,7 @@ describe("Badge semantics", () => {
 
     expect(container.querySelector(".rathe-badge__glyph")).toHaveAttribute("aria-hidden", "true");
     expect(container.querySelector(".rathe-badge__dot")).toHaveAttribute("aria-hidden", "true");
-    // The accessible text is exactly the label — no stray glyph characters.
+    // The accessible text is exactly the label, no stray glyph characters.
     expect(screen.getByText("Disqualified")).toBeInTheDocument();
   });
 });

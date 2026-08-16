@@ -9,7 +9,7 @@ const meta: Meta<typeof Field> = {
     docs: {
       description: {
         component:
-          "One wrapper owns label, hint and error for both `<input>` and `<textarea>`, because the wiring — `htmlFor`, a generated id, `aria-describedby` carrying hint *and* error, `aria-invalid`, `role=\"alert\"` — is the part teams get wrong when each form hand-rolls it. The error is never colour alone: it carries a warning icon and a screen-reader \"Error:\" prefix, and the invalid border thickens to 2px.",
+          "One wrapper owns label, hint and error for both `<input>` and `<textarea>`, because the wiring is mostly what teams get wrong when each form hand-rolls it: `htmlFor`, a generated id, `aria-describedby` carrying hint *and* error, `aria-invalid`, `role=\"alert\"`. The error is never colour alone. It carries a warning icon and a screen-reader \"Error:\" prefix, and the invalid border thickens to 2px, because a colour-blind scorekeeper needs a second signal.",
       },
     },
   },
@@ -44,7 +44,7 @@ export const WithHintAndError: Story = {
     docs: {
       description: {
         story:
-          "Both messages are referenced from a single space-separated aria-describedby, hint first, so the control is explained before it is corrected.",
+          "Both messages sit in one space-separated aria-describedby, hint first, because the control should be explained before it is corrected.",
       },
     },
   },

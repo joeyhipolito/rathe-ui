@@ -14,7 +14,7 @@ function Console(props: { duration?: number }) {
         onClick={() =>
           toast({
             title: "Result recorded",
-            description: "Table 12 — Kayo 2-1 Dorinthea.",
+            description: "Table 12, Kayo 2-1 Dorinthea.",
             variant: "success",
             duration: props.duration,
           })

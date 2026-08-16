@@ -33,7 +33,7 @@ export interface DataTableProps<T>
   sort?: DataTableSort | null;
   onSortChange?: (sort: DataTableSort) => void;
   getRowKey: (row: T, index: number) => React.Key;
-  /** Column whose cell becomes the row's <th scope="row"> — usually the name. */
+  /** Column whose cell becomes the row's <th scope="row">, usually the name. */
   rowHeaderKey?: string;
   density?: "comfortable" | "compact";
   zebra?: boolean;
@@ -49,7 +49,7 @@ function cx(...parts: Array<string | false | null | undefined>): string {
 
 /**
  * Fallback cell renderer for columns without `render`. Values that are not
- * primitives are dropped rather than stringified — "[object Object]" in a
+ * primitives are dropped rather than stringified, "[object Object]" in a
  * standings column is worse than an empty cell, and it hides the bug.
  */
 function defaultCell<T>(row: T, key: string): React.ReactNode {

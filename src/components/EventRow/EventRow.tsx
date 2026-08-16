@@ -39,7 +39,7 @@ const cx = (...parts: Array<string | false | null | undefined>): string =>
 /*
  * Locale is pinned to en-NZ rather than left to the browser. A tournament start
  * time is an unambiguous fact printed on a store's listing, and the browser
- * default is whatever the reader's OS happens to be set to — which turns
+ * default is whatever the reader's OS happens to be set to, which turns
  * "6/9" into September 6th for a player with a US locale and June 9th for the
  * store that scheduled it. Store staff field that phone call. The parts are
  * reassembled by hand instead of being taken from a single format string so
@@ -107,8 +107,8 @@ export const EventRow = forwardRef<HTMLElement, EventRowProps>(function EventRow
         <span className="rathe-event-row__name" id={nameId}>
           {/*
             The link wraps the event name only. Wrapping the whole row would
-            make the link's accessible name the entire row — name, date, venue,
-            format, tier and seat count read as one sentence — which is what
+            make the link's accessible name the entire row, so name, date, venue,
+            format, tier and seat count read as one sentence, which is what
             makes link lists in screen readers unusable. The hit area is
             restored with an ::after overlay on the link instead, so pointer and
             touch users still get the whole row, and the spoken name stays
@@ -153,7 +153,7 @@ export const EventRow = forwardRef<HTMLElement, EventRowProps>(function EventRow
                   is a second non-colour signal for greyscale printouts. */}
               <span className="rathe-event-row__seats-value">Full</span>
               <span className="rathe-event-row__seats-detail">
-                {`${registered} of ${capacity} — waitlist only`}
+                {`${registered} of ${capacity}, waitlist only`}
               </span>
             </>
           ) : (

@@ -33,7 +33,7 @@ function range(start: number, end: number): number[] {
 
 /**
  * Produces the visible page sequence with ellipses. Exported because the
- * truncation rules are the part of a paginator that quietly breaks — a range
+ * truncation rules are the part of a paginator that quietly breaks, a range
  * that flickers between five and seven controls as you page through it moves
  * the Next button under the pointer, and that is only catchable in a unit test.
  */

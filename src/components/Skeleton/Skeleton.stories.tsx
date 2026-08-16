@@ -12,9 +12,9 @@ const meta: Meta<typeof Skeleton> = {
         component: [
           "Loading placeholders sized to the content they stand in for. A skeleton that does not match the eventual layout is worse than a spinner, because it promises a shape and then reflows the page out from under the reader.",
           "",
-          "**The skeleton is `aria-hidden`.** Announcing a row of placeholder bars is noise; a screen reader user needs one polite \"Loading standings\" and then the real content. The live region is therefore a separate node — either supplied by the consumer, or by `SkeletonText`, which renders a `.rathe-sr-only` `role=\"status\"` beside the bars. It sits *outside* the hidden subtree, because nesting it inside would hide the only thing meant to be heard.",
+          "**The skeleton is `aria-hidden`**, because announcing a row of placeholder bars is noise. A screen reader user needs one polite \"Loading standings\" and then the real content. So the live region is a separate node, supplied either by the consumer or by `SkeletonText`, which renders a `.rathe-sr-only` `role=\"status\"` beside the bars. It sits *outside* the hidden subtree, because nesting it inside would hide the only thing meant to be heard.",
           "",
-          "**The shimmer stops under `prefers-reduced-motion`.** It is a large-area repeating motion in central vision, which is the pattern that triggers vestibular symptoms, and it repeats for as long as the request is in flight — on a game store's wifi mid-tournament, that is not a fraction of a second. The token layer's global guard only collapses animation duration, which would freeze this gradient half-painted, so the component removes the animation outright and falls back to a flat token fill.",
+          "**The shimmer stops under `prefers-reduced-motion`.** It is a large-area repeating motion in central vision, which is the pattern that triggers vestibular symptoms, and it repeats for as long as the request is in flight. On a game store's wifi mid-tournament, that is probably not a fraction of a second. The token layer's global guard only collapses animation duration, which would freeze this gradient half-painted, so the component removes the animation outright and falls back to a flat token fill.",
         ].join("\n"),
       },
     },

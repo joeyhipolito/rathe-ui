@@ -38,9 +38,9 @@ const meta: Meta<typeof EmptyState> = {
         component: [
           "Zero-result and first-run states. Two states that look the same and are not: *nothing exists yet* wants an action, *your filter matched nothing* wants a way back. The component takes both; the copy is the consumer's job.",
           "",
-          "**The heading level is a prop with no hardcoded default beyond `h2`.** The same empty state sits directly under an `<h1>` on a standalone page and under an `<h3>` inside a dashboard card. A fixed level is correct in exactly one of those places and silently corrupts the document outline in the other, which is how heading-navigation stops working for screen reader users.",
+          "**The heading level is a prop with no hardcoded default beyond `h2`.** The same empty state sits directly under an `<h1>` on a standalone page and under an `<h3>` inside a dashboard card. A fixed level is correct in exactly one of those places and silently corrupts the document outline in the other. That is how heading navigation stops working for screen reader users.",
           "",
-          "The icon is `aria-hidden`. It is a mood, not information — the title carries the meaning, so an empty state with no icon loses nothing but decoration.",
+          "The icon is `aria-hidden`, because it is a mood rather than information. The title carries the meaning, so an empty state with no icon loses nothing but decoration.",
         ].join("\n"),
       },
     },

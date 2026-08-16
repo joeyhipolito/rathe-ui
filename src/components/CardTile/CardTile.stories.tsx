@@ -12,21 +12,22 @@ const meta = {
       description: {
         component: [
           "A compact card, for deck lists and card search. A card in hand has four competing",
-          "uses — play it, pitch it for resources, defend with it, or arsenal it face down —",
-          "and three of those four are decided from the numbers on this tile, so pitch, cost,",
+          "uses: play it, pitch it for resources, defend with it, or arsenal it face down.",
+          "Three of those four are decided from the numbers on this tile, so pitch, cost,",
           "power and defence are all first-class here rather than hidden behind a detail view.",
           "",
           "Three decisions worth knowing about:",
           "",
           "- **Selectable means `<button>`.** When `onSelect` is passed the root is a real",
-          "  button with `aria-pressed`, never a `div` with a click handler. That also",
-          "  constrains the internals to phrasing content only — every child is a `span`,",
-          "  because a `div` or `dl` inside a button is invalid and gets reparented.",
+          "  button with `aria-pressed`, never a `div` with a click handler. Without",
+          "  `onSelect` it is an `<article>` instead. The button case also holds the",
+          "  internals to phrasing content only, so every child is a `span`, because a",
+          "  `div` or `dl` inside a button is invalid and gets reparented.",
           "- **`power` and `defence` are nullable, not zero.** Sigil of Solace has no attack",
-          "  power; rendering `0` would say something false about the card. Null renders as an",
-          "  em dash and is omitted from the accessible name.",
-          "- **No art is licensed into this system.** The art slot is a typographic plate —",
-          "  the class initial in the display face over a sunk ground — not a grey box.",
+          "  power, and rendering `0` would say something false about the card. Null renders",
+          "  as an em dash and is left out of the accessible name.",
+          "- **No art is licensed into this system.** The art slot is a typographic plate,",
+          "  the class initial in the display face over a sunk ground, not a grey box.",
         ].join("\n"),
       },
     },
@@ -46,10 +47,10 @@ const sinkBelow: CardTileProps = {
   cardClass: "Generic",
 };
 
-/** Sink Below — the blue defence reaction every deck plays. No attack power at all. */
+/** Sink Below, the blue defence reaction every deck plays. No attack power at all. */
 export const DefenceReaction: Story = { args: sinkBelow };
 
-/** Wounding Blow — a red Warrior attack. Strongest printing, worst pitch. */
+/** Wounding Blow, a red Warrior attack. Strongest printing, worst pitch. */
 export const RedAttack: Story = {
   args: {
     name: "Wounding Blow",
@@ -62,7 +63,7 @@ export const RedAttack: Story = {
   },
 };
 
-/** Scar for a Scar in yellow — one less power than the red, one more resource. */
+/** Scar for a Scar in yellow: one less power than the red, one more resource. */
 export const YellowAttack: Story = {
   args: {
     name: "Scar for a Scar",
@@ -75,7 +76,7 @@ export const YellowAttack: Story = {
   },
 };
 
-/** Sigil of Solace — an Aura. Nothing to attack with, so power reads as an em dash. */
+/** Sigil of Solace, an Aura. Nothing to attack with, so power reads as an em dash. */
 export const Aura: Story = {
   args: {
     name: "Sigil of Solace",

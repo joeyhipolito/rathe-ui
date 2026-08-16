@@ -13,14 +13,15 @@ const meta = {
         component: [
           "`ToastProvider` mounts **two** live regions at startup and never moves a",
           "toast between them: a `role=\"status\" aria-live=\"polite\"` region for normal",
-          "messages and a `role=\"alert\" aria-live=\"assertive\"` region for `danger`.",
-          "A live region's politeness is fixed at the moment it is announced, so a",
-          "single container that flipped its `aria-live` value would announce with the",
-          "previous setting — and a region created in the same tick as its first child",
-          "is usually not announced at all, which is why both containers exist (empty)",
-          "from mount rather than appearing with the first toast. Auto-dismiss pauses on",
-          "hover and on focus within a toast and resumes from where it stopped (WCAG 2.2",
-          "\"Enough Time\"), and `danger` toasts never auto-dismiss at all.",
+          "messages, and a `role=\"alert\" aria-live=\"assertive\"` region for `danger`.",
+          "There are two because a live region's politeness is fixed at the moment it",
+          "is announced. A single container that flipped its `aria-live` value would",
+          "announce with the previous setting. Both containers also sit there empty",
+          "from mount rather than appearing with the first toast, because a region",
+          "created in the same tick as its first child is usually not announced at",
+          "all. Auto-dismiss pauses on hover and on focus within a toast and picks up",
+          "where it stopped, which is WCAG 2.2 \"Enough Time\". `danger` toasts have no",
+          "timer at all.",
         ].join(" "),
       },
     },
@@ -52,7 +53,7 @@ function Console() {
           toast({
             variant: "success",
             title: "Result recorded",
-            description: "Table 12 — Kayo 2-1 Dorinthea.",
+            description: "Table 12: Kayo 2-1 Dorinthea.",
           })
         }
       >
@@ -132,7 +133,7 @@ export const BottomCentre: Story = {
 };
 
 export const ShortDuration: Story = {
-  name: "Short duration (2s) — hover to hold",
+  name: "Short duration (2s), hover to hold",
   render: () => <Demo duration={2000} />,
 };
 

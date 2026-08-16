@@ -10,7 +10,7 @@ const meta: Meta<typeof Checkbox> = {
     docs: {
       description: {
         component:
-          "A real `<input type=\"checkbox\">` restyled with `appearance: none`, never hidden with `display: none` — the input keeps focus, keeps its role, and keeps working when CSS fails to load, which is the state a Django page in a store with bad wifi actually reaches. `indeterminate` is a DOM property with no HTML attribute, so it is written to the node in an effect rather than passed as a prop to the element.",
+          "A real `<input type=\"checkbox\">` restyled with `appearance: none`, never hidden with `display: none`, because the input has to keep focus and keep its role. It also keeps working when CSS fails to load, which is the state a Django page in a store with bad wifi actually reaches. `indeterminate` is a DOM property with no HTML attribute, so it is written to the node in an effect rather than passed as a prop to the element.",
       },
     },
   },
@@ -61,7 +61,7 @@ export const SelectAll: Story = {
     docs: {
       description: {
         story:
-          "The parent box drives the children and derives its own mixed state from them — the case indeterminate exists for.",
+          "The parent box drives the children and reads its own mixed state back from them. This is the case indeterminate exists for.",
       },
     },
   },

@@ -25,9 +25,9 @@ describe("EventRow", () => {
 
   /* CLDR abbreviates September as "Sep" in older ICU builds and "Sept" in
      current ones, so the month spelling is the one part of the output not
-     worth pinning. Everything the format decision is actually about — day
+     worth pinning. Everything the format decision is actually about, day
      before month, weekday present, 12-hour clock, no space before the day
-     period — is asserted exactly. */
+     period, is asserted exactly. */
   const SEP_5_10AM = /^Sat 5 Sept?, 10:00am$/;
 
   it("formats for a New Zealand audience regardless of the runtime locale", () => {
@@ -71,7 +71,7 @@ describe("EventRow", () => {
   it("marks the event full when registrations reach capacity, with a cue that is not colour", () => {
     const { container } = render(<EventRow {...armory} capacity={32} registered={32} />);
     expect(screen.getByText("Full")).toBeInTheDocument();
-    expect(screen.getByText("32 of 32 — waitlist only")).toBeInTheDocument();
+    expect(screen.getByText("32 of 32, waitlist only")).toBeInTheDocument();
     expect(container.querySelector(".rathe-event-row__seats--full")).not.toBeNull();
     expect(container.querySelector(".rathe-event-row__seats--open")).toBeNull();
   });

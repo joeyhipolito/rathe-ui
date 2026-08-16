@@ -9,7 +9,7 @@ export interface TierDescriptor {
   roman: string;
   /** Short visible label, sized for a dense event listing. */
   short: string;
-  /** Spoken expansion — the events the tier actually covers. */
+  /** Spoken expansion, the events the tier actually covers. */
   full: string;
 }
 

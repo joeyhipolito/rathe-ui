@@ -5,8 +5,8 @@ import { axe } from "vitest-axe";
 import { Dialog } from "./Dialog";
 
 /*
- * jsdom ships HTMLDialogElement but leaves showModal()/close() unimplemented —
- * calling them throws "Not implemented". These stand-ins do the only part the
+ * jsdom ships HTMLDialogElement but leaves showModal()/close() unimplemented,
+ * so calling them throws "Not implemented". These stand-ins do the only part the
  * component depends on: flipping the `open` attribute (which drives jsdom's
  * default `dialog:not([open]) { display: none }` rule, and therefore
  * visibility for both Testing Library and axe) and firing `close` on the way
@@ -72,7 +72,7 @@ describe("Dialog", () => {
 
     const dialog = screen.getByRole("dialog", { name: "Round 4 pairings" });
     expect(dialog).toBeVisible();
-    // First focusable inside the content region — not the close button, which
+    // First focusable inside the content region, not the close button, which
     // is earlier in the DOM but a poor first stop.
     expect(screen.getByRole("button", { name: "Back" })).toHaveFocus();
 

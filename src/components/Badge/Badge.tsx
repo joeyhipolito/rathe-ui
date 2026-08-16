@@ -59,8 +59,8 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(function Badg
       )}
     >
       {dot ? <span className="rathe-badge__dot" aria-hidden="true" /> : null}
-      {/* The glyph is decoration to assistive technology — the label already
-          carries the meaning — but it is the only non-colour channel a sighted
+      {/* The glyph is decoration to assistive technology, because the label
+          already carries the meaning, but it is the only non-colour channel a sighted
           user has, so it is never conditional on hue alone. */}
       {glyph ? (
         <span className="rathe-badge__glyph" aria-hidden="true">

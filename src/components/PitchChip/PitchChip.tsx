@@ -19,7 +19,7 @@ export interface PitchChipProps extends HTMLAttributes<HTMLSpanElement> {
   size?: "sm" | "md";
   /**
    * Adds a visible "2 resources" caption beside the numeral. It does NOT gate
-   * the numeral — the numeral is unconditional, because pitch encoded only in
+   * the numeral, the numeral is unconditional, because pitch encoded only in
    * colour is unreadable to a large slice of the player base.
    */
   showValue?: boolean;
@@ -41,7 +41,7 @@ export const PitchChip = forwardRef<HTMLSpanElement, PitchChipProps>(function Pi
       ref={ref}
       role="img"
       /* role="img" is not a name-from-content role, so the visually hidden span
-         below has to be pointed at explicitly — inside the element it would
+         below has to be pointed at explicitly, inside the element it would
          never be read, and axe's role-img-alt rule would fail the chip. */
       aria-labelledby={labelId}
       className={cx(

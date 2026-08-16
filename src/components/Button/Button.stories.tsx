@@ -9,7 +9,7 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component:
-          "Four variants, two sizes, one loading state. `danger` resolves to the semantic error red and never to the brand vermilion, so a destructive confirm in GEM cannot be mistaken for an on-brand call to action. Loading does not disable the button: it keeps the label, keeps focus, sets `aria-busy`, and blocks activation in the handler, because disabling mid-submit throws keyboard focus to the body and a scorekeeper loses their place.",
+          "Four variants, two sizes, one loading state. `danger` uses the semantic error red and never the brand vermilion, because a destructive confirm in GEM must not be mistaken for an on-brand call to action. Loading does not disable the button. It keeps the label, keeps focus, sets `aria-busy`, and blocks activation in the handler, because disabling mid-submit throws keyboard focus to the body and a scorekeeper loses their place.",
       },
     },
   },
@@ -55,7 +55,7 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Every variant at both sizes, for reviewing weight and contrast side by side.",
+        story: "Every variant at both sizes, because weight and contrast are easier to judge side by side.",
       },
     },
   },

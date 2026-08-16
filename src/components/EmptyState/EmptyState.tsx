@@ -12,7 +12,7 @@ export interface EmptyStateProps
   description?: React.ReactNode;
   /** Buttons or links. Rendered after the copy so the reading order matches. */
   action?: React.ReactNode;
-  /** Decorative. Hidden from assistive technology — the title carries meaning. */
+  /** Decorative. Hidden from assistive technology, the title carries meaning. */
   icon?: React.ReactNode;
   /**
    * Heading level. Never hardcoded: the same empty state sits under an <h1> on

@@ -6,9 +6,9 @@ const meta = {
   title: "Overlays/Dialog",
   component: Dialog,
   tags: ["autodocs"],
-  // Every story drives `open` from its own wrapper state, since a dialog with
-  // no opener cannot demonstrate focus restoration. These satisfy the required
-  // props for the docs table; the wrappers override them.
+  // Every story drives `open` from its own wrapper state, because a dialog with
+  // no opener cannot show focus restoration. These args are only here to fill
+  // the required props in the docs table, and the wrappers override them.
   args: { open: false, onClose: () => {}, title: "Dialog" },
   parameters: {
     docs: {
@@ -16,14 +16,15 @@ const meta = {
         component: [
           "Built on the native `<dialog>` element driven by `showModal()`, not on a",
           "div with a hand-rolled focus trap. The browser then owns the top layer, the",
-          "inert background, and Esc — three things that JS traps get subtly wrong and",
-          "that fail loudly during a live tournament. What the platform does not give",
-          "us is added on top: focus is moved into the dialog on open and restored to",
-          "the opener on close, backdrop clicks are detected by comparing the event",
-          "target to the dialog element (a `::backdrop` click reports the dialog as the",
-          "target), and Esc is intercepted via the native `cancel` event so it exits",
-          "through the same `onClose` path as the button rather than closing the",
-          "element behind React's state.",
+          "inert background, and Esc. Those are the three parts a hand-rolled trap",
+          "mostly gets subtly wrong, and they fail loudly during a live tournament.",
+          "The rest is added on top because the platform does not give it. Focus is",
+          "captured before the dialog opens and restored to the opener on close.",
+          "Backdrop clicks are found by comparing the event target to the dialog",
+          "element, because `::backdrop` is not an element and a click on it reports",
+          "the dialog itself as the target. Esc goes through the native `cancel` event",
+          "so it leaves by the same `onClose` path as the button, because otherwise",
+          "the element closes behind React's state and `open` stays true.",
         ].join(" "),
       },
     },
@@ -82,7 +83,7 @@ function DropRoundDialog() {
         }
       >
         <p style={{ margin: 0 }}>
-          Kayo, Berserker Prodigy — seat 12, 2-1-0. Head judge sign-off is recorded against
+          Kayo, Berserker Prodigy. Seat 12, 2-1-0. Head judge sign-off is recorded against
           your scorekeeper account.
         </p>
       </Dialog>
@@ -106,12 +107,12 @@ function DestructiveDialog() {
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
-        // A stray backdrop click must not be a way to leave a destructive
-        // confirmation ambiguous, so this one only closes deliberately.
+        // This one only closes on a deliberate choice, because a stray backdrop
+        // click should not be a way out of a destructive confirmation.
         closeOnBackdrop={false}
         initialFocusRef={cancelRef}
         size="sm"
-        title="Delete Armory — Tuesday?"
+        title="Delete Armory (Tuesday)?"
         description="47 recorded matches and 62 registrations are removed. This cannot be undone and does not sync back from GEM."
         footer={
           <>
@@ -156,7 +157,7 @@ function ScrollingDialog() {
         <ol style={{ margin: 0, paddingLeft: "var(--rathe-space-5)" }}>
           {Array.from({ length: 24 }, (_, index) => (
             <li key={index} style={{ padding: "var(--rathe-space-1) 0" }}>
-              Table {index + 1} — pairing locked
+              Table {index + 1}: pairing locked
             </li>
           ))}
         </ol>

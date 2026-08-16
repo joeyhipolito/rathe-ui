@@ -10,7 +10,7 @@ export interface HeroPanelProps extends HTMLAttributes<HTMLElement> {
   heroClass: string;
   /** Light, Shadow, Elemental, Draconic, Chaos. A hero may carry more than one. */
   talents?: string[];
-  /** Hand size — the number of cards the hero draws back up to at end of turn. */
+  /** Hand size, the number of cards the hero draws back up to at end of turn. */
   intellect: number;
   life: number;
   ability?: string;
@@ -28,7 +28,7 @@ const cx = (...parts: Array<string | false | null | undefined>): string =>
   parts.filter(Boolean).join(" ");
 
 /* Talents are a small closed set in the game, and each one has a colour players
-   already associate with it. The chip still spells the talent out — the tint is
+   already associate with it. The chip still spells the talent out, the tint is
    recognition, never the carrier. Unknown talents fall back to the neutral
    chip rather than being dropped. */
 const TALENT_MODIFIERS: Record<string, string> = {

@@ -11,7 +11,7 @@ const meta: Meta<typeof RadioGroup> = {
     docs: {
       description: {
         component:
-          "A real `<fieldset>` with a `<legend>` naming the group. Arrow-key movement, the single tab stop, and one-of-many selection are native to inputs sharing a `name` — there is no roving tabindex here on purpose, because a hand-rolled one is how groups end up skipping the first option or trapping focus. The group owns name, value and error; each `Radio` reads them from context.",
+          "A real `<fieldset>` with a `<legend>` naming the group. Arrow-key movement, the single tab stop, and one-of-many selection are native to inputs sharing a `name`. There is no roving tabindex here on purpose, because a hand-rolled one is how groups end up skipping the first option or trapping focus. The group owns name, value and error, and each `Radio` reads them from context.",
       },
     },
   },
@@ -99,7 +99,7 @@ export const Controlled: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Controlled through `value` + `onValueChange`; each Radio derives its checked state from context.",
+        story: "Controlled through `value` and `onValueChange`. Each Radio reads its checked state from context.",
       },
     },
   },

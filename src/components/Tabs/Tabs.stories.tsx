@@ -10,15 +10,16 @@ const meta = {
     docs: {
       description: {
         component: [
-          "The WAI-ARIA tabs pattern implemented directly, roving tabindex included:",
-          "only the selected tab carries `tabIndex={0}`, so Tab moves past the whole",
-          "tablist instead of stepping through nine rounds of an event before reaching",
-          "the panel. Arrow keys move between tabs and wrap, Home/End jump to the ends.",
-          "Activation defaults to `automatic` (selection follows focus) per the APG's",
-          "recommendation for panels that are cheap to render; pass `activation=\"manual\"`",
-          "when a panel does real work on mount, so arrowing past it does not fire that",
-          "work. Panels stay mounted and `hidden` rather than unmounting, which keeps",
-          "every tab's `aria-controls` pointing at a node that exists.",
+          "The WAI-ARIA tabs pattern built directly, roving tabindex included. Only",
+          "the selected tab carries `tabIndex={0}`, so Tab moves past the whole",
+          "tablist instead of stepping through nine rounds of an event before it",
+          "reaches the panel. Arrow keys move between tabs and wrap, and Home/End jump",
+          "to the ends. Activation defaults to `automatic`, so selection follows focus.",
+          "Panels here are mostly cheap to render, and that is the case the APG",
+          "recommends it for. Pass `activation=\"manual\"` when a panel does real work",
+          "on mount, because arrowing past it should not fire that work. Panels stay",
+          "mounted and `hidden` instead of unmounting, because that keeps every tab's",
+          "`aria-controls` pointing at a node that exists.",
         ].join(" "),
       },
     },
@@ -34,12 +35,12 @@ const panelStyle: React.CSSProperties = {
 
 const rows: Record<string, Array<[string, string]>> = {
   "round-1": [
-    ["Table 1", "Kayo vs Prism — 2-0"],
-    ["Table 2", "Dorinthea vs Rhinar — 2-1"],
+    ["Table 1", "Kayo vs Prism, 2-0"],
+    ["Table 2", "Dorinthea vs Rhinar, 2-1"],
   ],
   "round-2": [
-    ["Table 1", "Kayo vs Dorinthea — in progress"],
-    ["Table 2", "Prism vs Rhinar — 1-1"],
+    ["Table 1", "Kayo vs Dorinthea, in progress"],
+    ["Table 2", "Prism vs Rhinar, 1-1"],
   ],
   "round-3": [
     ["Table 1", "Not yet paired"],

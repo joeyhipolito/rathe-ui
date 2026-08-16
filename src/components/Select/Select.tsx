@@ -12,9 +12,9 @@ export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<"select
 
 /**
  * A native `<select>`, deliberately. A custom listbox is a permanent
- * accessibility liability — typeahead, virtual cursors, Android TalkBack and
+ * accessibility liability, typeahead, virtual cursors, Android TalkBack and
  * iOS VoiceOver all have to be reimplemented and then re-fixed on every OS
- * release — and it is worse on a phone at a store counter than the platform
+ * release, and it is worse on a phone at a store counter than the platform
  * picker. Styling stops at `appearance: none` plus a CSS chevron so the popup
  * stays the operating system's.
  */

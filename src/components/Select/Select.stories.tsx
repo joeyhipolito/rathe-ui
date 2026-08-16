@@ -9,7 +9,7 @@ const meta: Meta<typeof Select> = {
     docs: {
       description: {
         component:
-          "A native `<select>` with the same label/hint/error wiring as Field. The decision is to *not* build a custom listbox: a div-based one has to reimplement typeahead, virtual cursors and every mobile screen-reader quirk, and it still loses to the OS picker on the phone a store owner actually runs the event from. Styling stops at `appearance: none` and a chevron drawn with CSS borders, so the popup remains the platform's.",
+          "A native `<select>` with the same label/hint/error wiring as Field. There is no custom listbox here on purpose. A div-based one has to reimplement typeahead, virtual cursors and every mobile screen-reader quirk, and it probably still loses to the OS picker on the phone a store owner actually runs the event from. Styling stops at `appearance: none` and a chevron drawn with CSS borders, because the popup should stay the platform's.",
       },
     },
   },

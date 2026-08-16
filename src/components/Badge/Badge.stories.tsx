@@ -21,13 +21,13 @@ const meta: Meta<typeof Badge> = {
     docs: {
       description: {
         component: [
-          "**Status is never carried by colour alone.** Every variant renders a shape glyph — `○ ℹ ✓ ▲ ✕ ◆` — alongside the text label. The glyph is `aria-hidden` because the label already says the thing to a screen reader; its job is the visual channel that survives greyscale, a projector at the back of a store, and every form of colour vision deficiency. Roughly one in twelve men cannot separate the success green from the warning amber, and a scorekeeper reading a drop column at a live event does not get to hover for a tooltip.",
+          "**Status is never carried by colour alone.** Every variant renders a shape glyph beside the text label: `○ ℹ ✓ ▲ ✕ ◆`. The glyph is `aria-hidden` because the label already says the thing to a screen reader. Its job is the visual side, the channel that survives greyscale, a projector at the back of a store, and every form of colour vision deficiency. Roughly one in twelve men cannot separate the success green from the warning amber, and a scorekeeper reading a drop column at a live event does not get to hover for a tooltip.",
           "",
-          "The label sits at `--rathe-ink` rather than the variant hue. Tinted text on a tinted ground is how status pills usually end up at 2.5:1; the hue lives in the ground, the border and the glyph instead.",
+          "The label sits at `--rathe-ink` rather than the variant hue, because tinted text on a tinted ground is how status pills usually end up at 2.5:1. The hue lives in the ground, the border and the glyph instead.",
           "",
-          "`brand` is the blood vermilion and `danger` is a separate, browner red. They are deliberately different tokens: reusing the identity colour for errors would make every destructive dialog look on-brand and every brand pill look like a warning.",
+          "`brand` is the blood vermilion. `danger` is a separate, browner red. They are different tokens on purpose, because reusing the identity colour for errors would make every destructive dialog look on-brand and every brand pill look like a warning.",
           "",
-          "Set `glyph={false}` only where the label itself names the status and every value in that column is a badge — the escape hatch exists, and it is the consumer's job to justify it.",
+          "Set `glyph={false}` only where the label itself names the status and every value in that column is a badge. The escape hatch exists, and justifying it is the consumer's job.",
         ].join("\n"),
       },
     },
@@ -39,7 +39,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
-/** All six variants. Read this story in greyscale — the glyphs still separate. */
+/** All six variants. Read this story in greyscale. The glyphs still separate the states. */
 export const Variants: Story = {
   render: () => (
     <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--rathe-space-2)" }}>
@@ -83,7 +83,7 @@ export const WithDot: Story = {
   ),
 };
 
-/** In a real column the badges stack, which is where the glyph earns its keep. */
+/** In a real column the badges stack, which is where the glyph matters most. */
 export const InAStandingsColumn: Story = {
   render: () => (
     <div

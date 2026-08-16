@@ -133,11 +133,11 @@ const meta: Meta<typeof DataTable> = {
           "",
           "Three decisions worth knowing:",
           "",
-          "- **The sort control is a `<button>` inside the `<th>`, never a handler on the `<th>` itself.** A click handler on a header cell is unreachable by keyboard and invisible to screen readers. The `<th>` carries `aria-sort`; the button carries the interaction.",
-          "- **Numeric columns get `font-variant-numeric: tabular-nums` and end-alignment.** Proportional digits make a points column ragged, and a ragged column cannot be scanned vertically — which is the only reason a standings table exists.",
-          "- **The scroll wrapper is a labelled `region` with `tabIndex={0}`.** A box that scrolls with a mouse but not with a keyboard is a trap on a narrow screen. The tab stop is static rather than measured; see the comment in the source for why.",
+          "- **The sort control is a `<button>` inside the `<th>`, never a handler on the `<th>` itself.** A click handler on a header cell is unreachable by keyboard and invisible to screen readers, because a header cell is not a control. The `<th>` carries `aria-sort`, which is the part that reports the column's current sort direction. The button carries the interaction.",
+          "- **Numeric columns get `font-variant-numeric: tabular-nums` and end-alignment.** Proportional digits make a points column ragged, and a ragged column cannot be scanned vertically. Scanning vertically is the only reason a standings table exists.",
+          "- **The scroll wrapper is a labelled `region` with `tabIndex={0}`.** A box that scrolls with a mouse but not with a keyboard is a trap on a narrow screen. The tab stop is static rather than measured, and the comment in the source says why.",
           "",
-          "`caption` is required and visually hidden by default — a table with no accessible name is unusable when you are moving between three of them on one page. Pass `captionVisible` to show it.",
+          "`caption` is required and visually hidden by default, because a table with no accessible name is unusable when you are moving between three of them on one page. Pass `captionVisible` to show it.",
         ].join("\n"),
       },
     },
@@ -172,7 +172,7 @@ export const Standings: Story = {
 
     return (
       <DataTable<Standing>
-        caption="Road to Nationals — Auckland, round 7 standings"
+        caption="Road to Nationals, Auckland, round 7 standings"
         captionVisible
         columns={columns}
         rows={rows}

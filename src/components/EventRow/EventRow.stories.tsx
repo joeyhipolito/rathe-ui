@@ -17,16 +17,17 @@ const meta = {
           "",
           "Two decisions worth knowing about:",
           "",
-          "- **The locale is pinned to `en-NZ`, and the time zone defaults to",
-          "  `Pacific/Auckland`.** A start time is an unambiguous fact printed by a store, and",
-          "  the browser default is whatever the reader's OS is set to — which renders `6/9`",
-          "  as September 6th for a player with a US locale and June 9th for the store that",
-          "  scheduled it. That is a support call, and the store takes it.",
+          "- **The date is a `<time>` element, the locale is pinned to `en-NZ`, and the time",
+          "  zone defaults to `Pacific/Auckland`.** A tournament start time is an unambiguous",
+          "  fact printed by a store, and the browser default is whatever the reader's OS is",
+          "  set to. That renders `6/9` as September 6th for a player with a US locale and",
+          "  June 9th for the store that scheduled it. That is a support call, and the store",
+          "  takes it.",
           "- **The link wraps the event name only.** The row is still clickable end to end,",
           "  but via an `::after` overlay on the link rather than an `<a>` around everything.",
-          "  Wrapping the row would make the link's accessible name the whole row — name,",
-          "  date, venue, format, tier and seat count as one sentence — which is precisely",
-          "  what makes a screen reader's link list useless.",
+          "  Wrapping the row would make the link's accessible name the whole row: name,",
+          "  date, venue, format, tier and seat count read as one sentence. That is what",
+          "  makes a screen reader's link list useless.",
         ].join("\n"),
       },
     },
@@ -48,10 +49,10 @@ const armory: EventRowProps = {
   href: "/events/takapuna-armory-blitz",
 };
 
-/** A weekly Armory — Tier 1, Casual, still eight seats. */
+/** A weekly Armory. Tier 1, Casual, still eight seats. */
 export const Default: Story = { args: armory };
 
-/** Road to Nationals season — Tier 2, Competitive REL, Classic Constructed. */
+/** Road to Nationals season. Tier 2, Competitive REL, Classic Constructed. */
 export const RoadToNationals: Story = {
   args: {
     name: "Road to Nationals: Classic Constructed",
@@ -66,7 +67,7 @@ export const RoadToNationals: Story = {
   },
 };
 
-/** Nationals — Tier 3, Professional REL. No seat count published yet. */
+/** Nationals. Tier 3, Professional REL. No seat count published yet. */
 export const Nationals: Story = {
   args: {
     name: "New Zealand National Championship",
@@ -79,7 +80,7 @@ export const Nationals: Story = {
   },
 };
 
-/** Tier 4 — the apex of the ladder. */
+/** Tier 4, the apex of the ladder. */
 export const ProTour: Story = {
   args: {
     name: "Pro Tour: Auckland",
@@ -104,12 +105,12 @@ export const Full: Story = {
   },
 };
 
-/** One seat left — the count is singular, because "1 spots left" is the tell of a generated UI. */
+/** One seat left. The count is singular, because "1 spots left" is the tell of a generated UI. */
 export const LastSeat: Story = {
   args: { ...armory, capacity: 24, registered: 23 },
 };
 
-/** No `href` — a listing the store has not opened registration for yet. */
+/** No `href`, because the store has not opened registration for this listing yet. */
 export const NotLinked: Story = {
   args: { ...armory, href: undefined },
 };

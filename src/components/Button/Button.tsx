@@ -9,7 +9,7 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   size?: ButtonSize;
   /**
    * Marks the button as working. The button keeps its label, its size and its
-   * place in the tab order — only activation is suppressed.
+   * place in the tab order, only activation is suppressed.
    */
   loading?: boolean;
   /** Text announced after the label while loading. */

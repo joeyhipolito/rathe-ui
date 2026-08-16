@@ -17,10 +17,11 @@ const meta = {
           "",
           "Two decisions worth knowing about:",
           "",
-          "- **The stats are a `<dl>`, and every number is labelled.** A bare `4` beside a bare",
-          "  `40` is meaningless to a new player and reads as two loose numbers to a screen",
-          "  reader. Each term also carries a plain-language hint — intellect is *cards drawn",
-          "  to*, life is a *starting total* — because the words themselves are jargon.",
+          "- **The stats are a `<dl>`, and every number is labelled.** Intellect and life are",
+          "  name and value pairs, and a bare number means nothing on its own: a bare `4`",
+          "  beside a bare `40` reads as two loose numbers to a new player and to a screen",
+          "  reader. Each term also carries a plain-language hint (intellect is *cards drawn",
+          "  to*, life is a *starting total*) because the words themselves are jargon.",
           "- **`headingLevel` is a prop.** The panel heads a deck in one surface and a profile",
           "  in another; hard-coding an `h3` would ship a heading outline that lies.",
         ].join("\n"),
@@ -32,7 +33,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Dorinthea Ironsong — the adult Warrior, Classic Constructed legal. */
+/** Dorinthea Ironsong, the adult Warrior. Classic Constructed legal. */
 export const Default: Story = {
   args: {
     name: "Dorinthea Ironsong",
@@ -44,7 +45,7 @@ export const Default: Story = {
   },
 };
 
-/** Bravo, Showstopper — a Guardian, and Guardians draw to three, not four. */
+/** Bravo, Showstopper. A Guardian, and Guardians draw to three, not four. */
 export const Guardian: Story = {
   args: {
     name: "Bravo, Showstopper",
@@ -55,8 +56,8 @@ export const Guardian: Story = {
 };
 
 /**
- * Katsu, the Wanderer as a young hero — the reduced-life printing used in
- * Blitz. The Young chip is a word, not a colour, because it changes which
+ * Katsu, the Wanderer as a young hero. This is the reduced-life printing used
+ * in Blitz. The Young chip is a word, not a colour, because it changes which
  * formats the deck is legal in.
  */
 export const YoungHero: Story = {
@@ -69,7 +70,7 @@ export const YoungHero: Story = {
   },
 };
 
-/** Prism, Sculptor of Arc Light — a Light Illusionist. One talent, one chip. */
+/** Prism, Sculptor of Arc Light. A Light Illusionist, so one talent, one chip. */
 export const WithTalent: Story = {
   args: {
     name: "Prism, Sculptor of Arc Light",
@@ -80,7 +81,7 @@ export const WithTalent: Story = {
   },
 };
 
-/** Viserai, Rune Blood — Shadow Runeblade. */
+/** Viserai, Rune Blood. Shadow Runeblade. */
 export const ShadowRuneblade: Story = {
   args: {
     name: "Viserai, Rune Blood",
@@ -93,7 +94,7 @@ export const ShadowRuneblade: Story = {
 
 /**
  * Briar, Warden of Thorns. Her card pool spans both the Elemental talent and
- * the Earth element, so the deck header shows both chips — the chips wrap and
+ * the Earth element, so the deck header shows both chips. The chips wrap and
  * each is written out, so a third or fourth talent costs nothing.
  */
 export const MultipleTalents: Story = {

@@ -19,7 +19,7 @@ export interface CardTileProps
   name: string;
   pitch: PitchValue;
   cost: number;
-  /** Attack power. `null` for cards that never attack — an Aura, an Item, most Instants. */
+  /** Attack power. `null` for cards that never attack, an Aura, an Item, most Instants. */
   power: number | null;
   /** Defence value. `null` for cards that cannot be blocked with, e.g. an Equipment already in the arena. */
   defence: number | null;
@@ -38,7 +38,7 @@ const cx = (...parts: Array<string | false | null | undefined>): string =>
 
 /**
  * The spoken identity of a card, assembled in the order a player would say it
- * out loud — name, pitch, type, class — rather than in the order the tile
+ * out loud (name, pitch, type, class) rather than in the order the tile
  * happens to lay things out. Visual order is a layout decision and will change;
  * this string is a domain fact and should not.
  */
@@ -86,7 +86,7 @@ export const CardTile = forwardRef<HTMLElement, CardTileProps>(function CardTile
 
   /* Every child below is phrasing content. The selectable tile is a real
      <button>, and a <div> or <dl> inside a button is invalid HTML that browsers
-     silently reparent — which breaks the layout in exactly the surfaces (deck
+     silently reparent, which breaks the layout in exactly the surfaces (deck
      builder search) where the tile is selectable. */
   const content = (
     <>

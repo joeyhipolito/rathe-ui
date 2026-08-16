@@ -32,7 +32,7 @@ describe("Checkbox", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it("stays focusable — it is restyled, not hidden", async () => {
+  it("stays focusable, it is restyled, not hidden", async () => {
     const user = userEvent.setup();
     render(<Checkbox label="Deck list checked" />);
 
@@ -49,7 +49,7 @@ describe("Checkbox", () => {
 
     const checkbox = screen.getByRole("checkbox", { name: "All decks checked" });
     expect((checkbox as HTMLInputElement).indeterminate).toBe(true);
-    // It is a property, never an attribute — asserting that keeps a future
+    // It is a property, never an attribute, asserting that keeps a future
     // "just pass it through" refactor honest.
     expect(checkbox).not.toHaveAttribute("indeterminate");
 

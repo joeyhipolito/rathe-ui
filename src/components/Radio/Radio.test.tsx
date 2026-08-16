@@ -48,7 +48,7 @@ describe("RadioGroup", () => {
     expect(loss).toHaveFocus();
     expect(loss).toBeChecked();
 
-    // All three share one name — that is what makes the group a single tab stop.
+    // All three share one name, that is what makes the group a single tab stop.
     const names = screen.getAllByRole("radio").map((radio) => radio.getAttribute("name"));
     expect(new Set(names).size).toBe(1);
   });
