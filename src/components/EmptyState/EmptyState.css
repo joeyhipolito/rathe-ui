@@ -1,0 +1,73 @@
+/* EmptyState.
+
+   Measure is capped at 46ch. An empty state is the one place a tool is allowed
+   to explain itself, and an unconstrained paragraph across a 1600px scorekeeper
+   window is a paragraph nobody reads. */
+
+.rathe-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--rathe-space-3);
+  color: var(--rathe-ink);
+  font-family: var(--rathe-font-ui);
+  text-align: center;
+}
+
+.rathe-empty--panel {
+  padding: var(--rathe-space-7) var(--rathe-space-5);
+  background: var(--rathe-surface);
+  border: 1px solid var(--rathe-rule);
+  border-radius: var(--rathe-radius-lg);
+}
+
+.rathe-empty--compact {
+  padding: var(--rathe-space-5) var(--rathe-space-4);
+  gap: var(--rathe-space-2);
+}
+
+.rathe-empty__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rathe-ink-faint);
+  font-size: var(--rathe-text-2xl);
+  line-height: 1;
+}
+
+.rathe-empty--compact .rathe-empty__icon {
+  font-size: var(--rathe-text-lg);
+}
+
+/* The title is the display face because this is one of the few operational
+   moments with room for the brand voice, and it is a heading, not body copy. */
+.rathe-empty__title {
+  margin: 0;
+  font-family: var(--rathe-font-display);
+  font-size: var(--rathe-text-md);
+  font-weight: 600;
+  line-height: var(--rathe-leading-tight);
+  letter-spacing: 0.01em;
+}
+
+.rathe-empty--compact .rathe-empty__title {
+  font-family: var(--rathe-font-ui);
+  font-size: var(--rathe-text-base);
+}
+
+.rathe-empty__description {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--rathe-ink-muted);
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-body);
+  text-wrap: pretty;
+}
+
+.rathe-empty__action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--rathe-space-2);
+  margin-top: var(--rathe-space-1);
+}

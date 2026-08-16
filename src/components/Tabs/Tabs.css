@@ -1,0 +1,103 @@
+.rathe-tabs {
+  display: flex;
+  color: var(--rathe-ink);
+  font-family: var(--rathe-font-ui);
+}
+
+.rathe-tabs--horizontal {
+  flex-direction: column;
+}
+
+.rathe-tabs--vertical {
+  flex-direction: row;
+  gap: var(--rathe-space-5);
+}
+
+.rathe-tabs__list {
+  display: flex;
+  gap: var(--rathe-space-1);
+}
+
+.rathe-tabs--horizontal > .rathe-tabs__list {
+  flex-direction: row;
+  /* Rounds overflow horizontally at a 9-round Battle Hardened rather than
+     wrapping onto a second row that shifts the panel down mid-event. */
+  overflow-x: auto;
+  border-bottom: 1px solid var(--rathe-rule);
+}
+
+.rathe-tabs--vertical > .rathe-tabs__list {
+  flex-direction: column;
+  flex: 0 0 auto;
+  border-right: 1px solid var(--rathe-rule);
+}
+
+.rathe-tabs__tab {
+  position: relative;
+  flex: 0 0 auto;
+  padding: var(--rathe-space-3) var(--rathe-space-4);
+  border: 0;
+  border-radius: var(--rathe-radius-sm) var(--rathe-radius-sm) 0 0;
+  background: transparent;
+  color: var(--rathe-ink-muted);
+  font: inherit;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--rathe-duration-fast) var(--rathe-ease),
+    background-color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-tabs__tab:hover:not(:disabled) {
+  color: var(--rathe-ink);
+  background: var(--rathe-surface);
+}
+
+.rathe-tabs__tab:disabled {
+  color: var(--rathe-ink-faint);
+  cursor: not-allowed;
+}
+
+.rathe-tabs__tab--selected {
+  color: var(--rathe-ink);
+  font-weight: 600;
+}
+
+/* The selected marker is a pseudo-element rather than a border so the tab does
+   not change size between states and the row never reflows on selection. */
+.rathe-tabs__tab--selected::after {
+  content: "";
+  position: absolute;
+  background: var(--rathe-blood);
+}
+
+.rathe-tabs--horizontal .rathe-tabs__tab--selected::after {
+  inset: auto 0 -1px 0;
+  height: 2px;
+}
+
+.rathe-tabs--vertical .rathe-tabs__tab {
+  border-radius: var(--rathe-radius-sm) 0 0 var(--rathe-radius-sm);
+  text-align: left;
+}
+
+.rathe-tabs--vertical .rathe-tabs__tab--selected::after {
+  inset: 0 -1px 0 auto;
+  width: 2px;
+}
+
+.rathe-tabs__panel {
+  padding: var(--rathe-space-4) 0;
+  font-size: var(--rathe-text-base);
+  line-height: var(--rathe-leading-body);
+}
+
+.rathe-tabs--vertical > .rathe-tabs__panel {
+  flex: 1 1 auto;
+  padding: 0;
+}
+
+.rathe-tabs__panel[hidden] {
+  display: none;
+}

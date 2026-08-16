@@ -1,0 +1,174 @@
+.rathe-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-2);
+  font-family: var(--rathe-font-ui);
+  /* The UA fieldset border and inset padding are reset here rather than in a
+     global reset, because the token layer also ships to Bootstrap surfaces
+     that still want their own fieldset defaults elsewhere on the page. */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.rathe-radio-group__legend {
+  padding: 0;
+  font-size: var(--rathe-text-sm);
+  font-weight: 600;
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink);
+}
+
+.rathe-radio-group__hint {
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-radio-group__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-2);
+}
+
+.rathe-radio-group__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-1);
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  font-weight: 600;
+  color: var(--rathe-danger);
+}
+
+.rathe-radio-group__error-icon {
+  flex: none;
+  margin-block-start: 0.15em;
+}
+
+/* --- individual radio --------------------------------------------------- */
+
+.rathe-radio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-1);
+}
+
+.rathe-radio__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-2);
+}
+
+.rathe-radio__box {
+  display: inline-grid;
+  flex: none;
+  margin-block-start: 0.1em;
+}
+
+.rathe-radio__box > * {
+  grid-area: 1 / 1;
+}
+
+.rathe-radio__input {
+  appearance: none;
+  margin: 0;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  background: var(--rathe-paper);
+  border: 1px solid var(--rathe-rule-strong);
+  border-radius: var(--rathe-radius-full);
+  cursor: pointer;
+  transition:
+    background-color var(--rathe-duration-fast) var(--rathe-ease),
+    border-color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-radio__input:hover:not(:disabled) {
+  border-color: var(--rathe-ink-faint);
+}
+
+.rathe-radio__input:checked {
+  background: var(--rathe-blood);
+  border-color: var(--rathe-blood);
+}
+
+.rathe-radio__input:checked:hover:not(:disabled) {
+  background: var(--rathe-blood-hover);
+  border-color: var(--rathe-blood-hover);
+}
+
+.rathe-radio__input:disabled {
+  background: var(--rathe-surface-sunk);
+  border-color: var(--rathe-rule);
+  cursor: not-allowed;
+}
+
+.rathe-radio__input:disabled:checked {
+  background: var(--rathe-ink-faint);
+  border-color: var(--rathe-ink-faint);
+}
+
+.rathe-radio__dot {
+  position: relative;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  pointer-events: none;
+}
+
+.rathe-radio__dot::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  margin: -0.25rem 0 0 -0.25rem;
+  background: var(--rathe-blood-ink);
+  border-radius: var(--rathe-radius-full);
+  opacity: 0;
+}
+
+.rathe-radio__input:checked + .rathe-radio__dot::before {
+  opacity: 1;
+}
+
+.rathe-radio__label {
+  font-size: var(--rathe-text-base);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink);
+  cursor: pointer;
+}
+
+.rathe-radio--disabled .rathe-radio__label {
+  color: var(--rathe-ink-faint);
+  cursor: not-allowed;
+}
+
+.rathe-radio__hint {
+  margin: 0;
+  padding-inline-start: calc(1.25rem + var(--rathe-space-2));
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-radio--invalid .rathe-radio__input {
+  border-color: var(--rathe-danger);
+  border-width: 2px;
+}
+
+@media (pointer: coarse) {
+  .rathe-radio__row {
+    min-block-size: 44px;
+    align-items: center;
+    padding-block: var(--rathe-space-2);
+  }
+
+  .rathe-radio__box {
+    margin-block-start: 0;
+  }
+}

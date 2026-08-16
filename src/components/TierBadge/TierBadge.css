@@ -1,0 +1,65 @@
+.rathe-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rathe-space-2);
+  padding: var(--rathe-space-1) var(--rathe-space-2);
+  border: 1px solid var(--rathe-rule);
+  border-radius: var(--rathe-radius-sm);
+  background: transparent;
+  color: var(--rathe-ink-muted);
+  font-family: var(--rathe-font-ui);
+  line-height: var(--rathe-leading-tight);
+  vertical-align: middle;
+}
+
+/* The numeral is set in the display face: it is an inscriptional Roman
+   capital, which is exactly what a Roman numeral wants and exactly what the
+   surrounding UI text does not. */
+.rathe-tier-badge__numeral {
+  font-family: var(--rathe-font-display);
+  font-size: var(--rathe-text-sm);
+  font-weight: 700;
+  letter-spacing: var(--rathe-tracking-caps);
+  /* The tracking adds a trailing gap after the last glyph; pull it back so the
+     numeral optically centres inside the badge. */
+  margin-inline-end: calc(var(--rathe-tracking-caps) * -1);
+}
+
+.rathe-tier-badge__label {
+  font-size: var(--rathe-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--rathe-tracking-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* --- emphasis ladder ----------------------------------------------------
+   Tier is a hierarchy, so the badge is one too. Tier 1 is a hairline on the
+   page ground — an Armory runs weekly and should not shout in a listing. Each
+   step up gains ground, then weight, then the gold. Gold is used as ground and
+   rule rather than as text: --rathe-gold sits at 0.70L in light and 0.78L in
+   dark, so gold *type* would fail contrast on both papers, while gold-soft
+   carries --rathe-ink at well over 4.5:1 in either theme. */
+.rathe-tier-badge--2 {
+  background: var(--rathe-surface);
+  border-color: var(--rathe-rule);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-tier-badge--3 {
+  background: var(--rathe-surface-sunk);
+  border-color: var(--rathe-rule-strong);
+  color: var(--rathe-ink);
+}
+
+.rathe-tier-badge--4 {
+  background: var(--rathe-gold-soft);
+  border-color: var(--rathe-gold);
+  color: var(--rathe-ink);
+  box-shadow: var(--rathe-shadow-sm);
+}
+
+.rathe-tier-badge--4 .rathe-tier-badge__numeral,
+.rathe-tier-badge--4 .rathe-tier-badge__label {
+  font-weight: 700;
+}

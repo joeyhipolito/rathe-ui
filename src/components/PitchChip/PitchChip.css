@@ -1,0 +1,72 @@
+.rathe-pitch-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rathe-space-2);
+  font-family: var(--rathe-font-ui);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: var(--rathe-radius-full);
+  vertical-align: middle;
+}
+
+.rathe-pitch-chip__value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.rathe-pitch-chip__caption {
+  font-weight: 600;
+  font-size: var(--rathe-text-xs);
+  letter-spacing: var(--rathe-tracking-caps);
+  text-transform: uppercase;
+  padding-inline-end: var(--rathe-space-2);
+}
+
+/* --- size ---------------------------------------------------------------
+   The unlabelled chip is a circle sized off the numeral, so it reads as the
+   printed pitch pip. Adding the caption turns it into a pill; the numeral
+   keeps its circular well so the two variants stay recognisably the same
+   object. */
+.rathe-pitch-chip--sm {
+  font-size: var(--rathe-text-xs);
+  min-width: 1.25rem;
+  height: 1.25rem;
+}
+
+.rathe-pitch-chip--md {
+  font-size: var(--rathe-text-sm);
+  min-width: 1.75rem;
+  height: 1.75rem;
+}
+
+.rathe-pitch-chip--labelled {
+  gap: var(--rathe-space-1);
+}
+
+.rathe-pitch-chip--labelled .rathe-pitch-chip__value {
+  width: auto;
+  aspect-ratio: 1;
+  padding-inline: var(--rathe-space-1);
+}
+
+/* --- pitch colours ------------------------------------------------------
+   Sourced only from the pitch tokens; each ground is paired with its own ink
+   token, which is contrast-checked against it in scripts/check-contrast.ts. */
+.rathe-pitch-chip--red {
+  background: var(--rathe-pitch-red);
+  color: var(--rathe-pitch-red-ink);
+}
+
+.rathe-pitch-chip--yellow {
+  background: var(--rathe-pitch-yellow);
+  color: var(--rathe-pitch-yellow-ink);
+}
+
+.rathe-pitch-chip--blue {
+  background: var(--rathe-pitch-blue);
+  color: var(--rathe-pitch-blue-ink);
+}

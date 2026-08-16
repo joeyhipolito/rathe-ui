@@ -1,0 +1,138 @@
+/* The <dialog> element itself is only a positioning box: no padding, no
+   background, no border. Everything visible lives on __panel, which means a
+   click whose target is the dialog element can only have come from ::backdrop. */
+.rathe.rathe-dialog {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--rathe-ink);
+  width: min(var(--rathe-dialog-width, 32rem), calc(100vw - var(--rathe-space-6)));
+  max-height: calc(100vh - var(--rathe-space-7));
+  overflow: visible;
+  /* Ignored while the element is in the top layer, and load-bearing in the
+     fallback path where a polyfill renders it inline. */
+  z-index: var(--rathe-z-dialog);
+}
+
+.rathe-dialog--sm {
+  --rathe-dialog-width: 24rem;
+}
+
+.rathe-dialog--md {
+  --rathe-dialog-width: 32rem;
+}
+
+.rathe-dialog--lg {
+  --rathe-dialog-width: 46rem;
+}
+
+.rathe-dialog::backdrop {
+  z-index: var(--rathe-z-overlay);
+  background-color: color-mix(in oklab, var(--rathe-ink) 55%, transparent);
+  animation: rathe-dialog-backdrop-in var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-dialog__panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--rathe-space-7));
+  background: var(--rathe-surface);
+  border: 1px solid var(--rathe-rule);
+  border-radius: var(--rathe-radius-lg);
+  box-shadow: var(--rathe-shadow-lg);
+  animation: rathe-dialog-panel-in var(--rathe-duration-base) var(--rathe-ease);
+}
+
+.rathe-dialog__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-4);
+  padding: var(--rathe-space-5) var(--rathe-space-5) var(--rathe-space-4);
+  border-bottom: 1px solid var(--rathe-rule);
+}
+
+.rathe-dialog__title {
+  flex: 1 1 auto;
+  margin: 0;
+  font-family: var(--rathe-font-display);
+  font-size: var(--rathe-text-md);
+  line-height: var(--rathe-leading-tight);
+  color: var(--rathe-ink);
+}
+
+.rathe-dialog__close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 2.25rem keeps the hit target at 36px, above the WCAG 2.2 24px minimum,
+     which matters when a scorekeeper is dismissing this on a laptop trackpad. */
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--rathe-radius-md);
+  background: transparent;
+  color: var(--rathe-ink-muted);
+  cursor: pointer;
+  transition: background-color var(--rathe-duration-fast) var(--rathe-ease),
+    color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-dialog__close:hover {
+  background: var(--rathe-surface-sunk);
+  color: var(--rathe-ink);
+}
+
+.rathe-dialog__content {
+  overflow-y: auto;
+  padding: var(--rathe-space-5);
+}
+
+.rathe-dialog__description {
+  margin: 0;
+  color: var(--rathe-ink-muted);
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-body);
+}
+
+.rathe-dialog__description + .rathe-dialog__body {
+  margin-top: var(--rathe-space-4);
+}
+
+.rathe-dialog__body {
+  font-size: var(--rathe-text-base);
+  line-height: var(--rathe-leading-body);
+}
+
+.rathe-dialog__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--rathe-space-3);
+  margin-top: var(--rathe-space-5);
+  padding-top: var(--rathe-space-4);
+  border-top: 1px solid var(--rathe-rule);
+}
+
+@keyframes rathe-dialog-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--rathe-space-2));
+  }
+}
+
+@keyframes rathe-dialog-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* The global guard in tokens.css matches `.rathe *`, which cannot reach the
+   dialog element or its ::backdrop pseudo-element. This covers the gap. */
+@media (prefers-reduced-motion: reduce) {
+  .rathe-dialog::backdrop,
+  .rathe-dialog__panel {
+    animation-duration: 0.01ms;
+  }
+}

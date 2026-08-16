@@ -1,0 +1,190 @@
+/* DataTable — dense operational table for standings, pairings, and event lists.
+
+   Sizing lives on the wrapper rather than the table so the scroll region and
+   the rules stay aligned when a consumer constrains height. */
+
+.rathe-datatable {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: auto;
+  background: var(--rathe-paper);
+  border: 1px solid var(--rathe-rule);
+  border-radius: var(--rathe-radius-lg);
+  color: var(--rathe-ink);
+  font-family: var(--rathe-font-ui);
+  /* A tab-focused scroll box must show its own ring; it is not inside .rathe
+     in every consumer, so the outline is declared here too. */
+  outline-offset: 2px;
+}
+
+.rathe-datatable:focus-visible {
+  outline: 2px solid var(--rathe-focus);
+}
+
+.rathe-datatable__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+}
+
+.rathe-datatable__caption {
+  padding: var(--rathe-space-3) var(--rathe-space-4);
+  color: var(--rathe-ink-muted);
+  font-size: var(--rathe-text-sm);
+  text-align: start;
+}
+
+/* --- header ------------------------------------------------------------ */
+
+.rathe-datatable__head th {
+  position: sticky;
+  top: 0;
+  z-index: var(--rathe-z-sticky);
+  background: var(--rathe-surface);
+  border-bottom: 1px solid var(--rathe-rule-strong);
+  color: var(--rathe-ink-muted);
+  font-size: var(--rathe-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--rathe-tracking-caps);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rathe-datatable__th {
+  padding: var(--rathe-space-2) var(--rathe-space-4);
+}
+
+/* The button is the whole header cell so the hit area matches the visual one. */
+.rathe-datatable__th--sortable {
+  padding: 0;
+}
+
+.rathe-datatable__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rathe-space-2);
+  width: 100%;
+  padding: var(--rathe-space-2) var(--rathe-space-4);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  transition: background-color var(--rathe-duration-fast) var(--rathe-ease),
+    color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-datatable__cell--end .rathe-datatable__sort {
+  justify-content: flex-end;
+}
+
+.rathe-datatable__cell--center .rathe-datatable__sort {
+  justify-content: center;
+}
+
+.rathe-datatable__sort:hover {
+  background: var(--rathe-surface-sunk);
+  color: var(--rathe-ink);
+}
+
+.rathe-datatable__sort:focus-visible {
+  outline: 2px solid var(--rathe-focus);
+  outline-offset: -2px;
+}
+
+.rathe-datatable__th--sorted .rathe-datatable__sort {
+  color: var(--rathe-ink);
+}
+
+.rathe-datatable__sort-glyph {
+  flex: none;
+  color: var(--rathe-ink-faint);
+  font-size: var(--rathe-text-xs);
+}
+
+.rathe-datatable__th--sorted .rathe-datatable__sort-glyph {
+  color: var(--rathe-blood);
+}
+
+/* --- body -------------------------------------------------------------- */
+
+.rathe-datatable__td,
+.rathe-datatable__th-row {
+  padding: var(--rathe-space-3) var(--rathe-space-4);
+  /* Zebra striping is an aid, not the separator. Every row carries a hairline
+     so the table still parses in high-contrast mode, in print, and for anyone
+     who cannot see the tint difference. */
+  border-bottom: 1px solid var(--rathe-rule);
+  vertical-align: baseline;
+}
+
+.rathe-datatable__th-row {
+  color: var(--rathe-ink);
+  font-weight: 600;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.rathe-datatable__body tr:last-child .rathe-datatable__td,
+.rathe-datatable__body tr:last-child .rathe-datatable__th-row {
+  border-bottom: 0;
+}
+
+.rathe-datatable--zebra .rathe-datatable__body tr:nth-child(even) {
+  background: var(--rathe-surface);
+}
+
+.rathe-datatable__body tr:hover {
+  background: var(--rathe-blood-soft);
+}
+
+.rathe-datatable__td--empty {
+  padding: var(--rathe-space-6) var(--rathe-space-4);
+  color: var(--rathe-ink-muted);
+  text-align: center;
+}
+
+/* --- alignment and figures --------------------------------------------- */
+
+.rathe-datatable__cell--start {
+  text-align: start;
+}
+
+.rathe-datatable__cell--center {
+  text-align: center;
+}
+
+.rathe-datatable__cell--end {
+  text-align: end;
+}
+
+/* Tabular figures are the point of a standings table: without them a column of
+   scores ragged by digit width cannot be scanned down. */
+.rathe-datatable__cell--numeric {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* --- density ----------------------------------------------------------- */
+
+.rathe-datatable--compact .rathe-datatable__td,
+.rathe-datatable--compact .rathe-datatable__th-row {
+  padding: var(--rathe-space-1) var(--rathe-space-3);
+}
+
+.rathe-datatable--compact .rathe-datatable__th {
+  padding: var(--rathe-space-1) var(--rathe-space-3);
+}
+
+.rathe-datatable--compact .rathe-datatable__th--sortable {
+  padding: 0;
+}
+
+.rathe-datatable--compact .rathe-datatable__sort {
+  padding: var(--rathe-space-1) var(--rathe-space-3);
+}

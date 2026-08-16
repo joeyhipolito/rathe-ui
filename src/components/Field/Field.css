@@ -1,0 +1,93 @@
+.rathe-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-1);
+  font-family: var(--rathe-font-ui);
+}
+
+.rathe-field__label {
+  font-size: var(--rathe-text-sm);
+  font-weight: 600;
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink);
+}
+
+.rathe-field__required-mark {
+  margin-inline-start: var(--rathe-space-1);
+  color: var(--rathe-danger);
+}
+
+.rathe-field__hint {
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-field__control {
+  font-family: inherit;
+  font-size: var(--rathe-text-base);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink);
+  background: var(--rathe-paper);
+  border: 1px solid var(--rathe-rule-strong);
+  border-radius: var(--rathe-radius-md);
+  padding: var(--rathe-space-2) var(--rathe-space-3);
+  min-block-size: 2.5rem;
+  inline-size: 100%;
+  transition:
+    border-color var(--rathe-duration-fast) var(--rathe-ease),
+    background-color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-field__control--textarea {
+  min-block-size: 5rem;
+  resize: vertical;
+  padding-block: var(--rathe-space-3);
+}
+
+.rathe-field__control::placeholder {
+  color: var(--rathe-ink-faint);
+}
+
+.rathe-field__control:hover:not(:disabled):not(:read-only) {
+  border-color: var(--rathe-ink-faint);
+}
+
+.rathe-field__control:disabled {
+  background: var(--rathe-surface-sunk);
+  color: var(--rathe-ink-faint);
+  border-color: var(--rathe-rule);
+  cursor: not-allowed;
+}
+
+/* The 2px weight, not just the hue, is what marks the invalid control — the
+   same reason the message carries an icon. */
+.rathe-field__control--invalid {
+  border-color: var(--rathe-danger);
+  border-width: 2px;
+  background: var(--rathe-danger-soft);
+}
+
+.rathe-field__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-1);
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  font-weight: 600;
+  color: var(--rathe-danger);
+}
+
+.rathe-field__error-icon {
+  flex: none;
+  margin-block-start: 0.15em;
+}
+
+@media (pointer: coarse) {
+  .rathe-field__control {
+    min-block-size: 44px;
+    padding-block: var(--rathe-space-3);
+  }
+}

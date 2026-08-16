@@ -1,0 +1,57 @@
+/* Skeleton.
+
+   The shimmer is a moving highlight over a sunk ground, both from tokens, so
+   it re-themes with everything else rather than being a hardcoded grey that
+   glows white on a dark surface. */
+
+.rathe-skeleton {
+  display: block;
+}
+
+.rathe-skeleton--stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-2);
+}
+
+.rathe-skeleton__bar {
+  width: var(--rathe-skeleton-w, 100%);
+  height: var(--rathe-skeleton-h, 1em);
+  border-radius: var(--rathe-skeleton-r, var(--rathe-radius-sm));
+  background-color: var(--rathe-surface-sunk);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--rathe-surface) 45%,
+    var(--rathe-surface) 55%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: rathe-skeleton-shimmer 1.4s var(--rathe-ease) infinite;
+}
+
+@keyframes rathe-skeleton-shimmer {
+  from {
+    background-position: -100% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* The shimmer is a large-area repeating motion in the reader's central vision.
+   For anyone with a vestibular disorder that is the exact pattern that triggers
+   symptoms, and it repeats for as long as the request is in flight — which, on
+   a store's wifi mid-tournament, is not a fraction of a second.
+
+   tokens.css already collapses animation-duration globally, but a collapsed
+   duration leaves this gradient frozen at its end position, which reads as a
+   half-painted bar. So the animation is removed outright and the ground is
+   flattened to a solid fill: still obviously a placeholder, no motion. */
+@media (prefers-reduced-motion: reduce) {
+  .rathe-skeleton__bar {
+    background-image: none;
+    animation: none;
+  }
+}

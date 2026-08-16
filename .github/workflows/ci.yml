@@ -1,0 +1,46 @@
+name: CI
+
+# Runs on every push and pull request. There is no branch allowlist here on
+# purpose: an allowlist that drifts from the default branch name is how a
+# pipeline silently stops running, which is a failure mode that is invisible
+# precisely because green and never-ran look identical in a repository list.
+on: [push, pull_request]
+
+jobs:
+  verify:
+    name: Types, tests, contrast, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install
+        run: bun install --frozen-lockfile
+
+      # Ordered cheapest-first so a type error fails in seconds rather than
+      # after a four-minute Storybook build.
+      - name: Type check
+        run: bun run type-check
+
+      - name: Unit and accessibility tests
+        run: bun run test
+
+      # The contrast gate is a build step, not a report. A palette change that
+      # drops a token pair below its WCAG 2.2 threshold fails the pipeline.
+      - name: Token contrast gate (WCAG 2.2)
+        run: bun run contrast
+
+      - name: Build Storybook
+        run: bun run build-storybook
+
+      - name: Upload Storybook build
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: storybook-static/
+          retention-days: 7

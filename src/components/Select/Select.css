@@ -1,0 +1,111 @@
+.rathe-select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-1);
+  font-family: var(--rathe-font-ui);
+}
+
+.rathe-select__label {
+  font-size: var(--rathe-text-sm);
+  font-weight: 600;
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink);
+}
+
+.rathe-select__required-mark {
+  margin-inline-start: var(--rathe-space-1);
+  color: var(--rathe-danger);
+}
+
+.rathe-select__hint {
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-select__control-wrap {
+  position: relative;
+  display: block;
+}
+
+/* Chevron drawn from two borders so it inherits a token colour and needs no
+   asset, no icon font and no data URI with a baked-in hex. */
+.rathe-select__control-wrap::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: var(--rathe-space-3);
+  inset-block-start: 50%;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-inline-end: 2px solid var(--rathe-ink-muted);
+  border-block-end: 2px solid var(--rathe-ink-muted);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.rathe-select__control {
+  appearance: none;
+  font-family: inherit;
+  font-size: var(--rathe-text-base);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink);
+  background: var(--rathe-paper);
+  border: 1px solid var(--rathe-rule-strong);
+  border-radius: var(--rathe-radius-md);
+  /* Trailing space clears the chevron. */
+  padding: var(--rathe-space-2) var(--rathe-space-6) var(--rathe-space-2) var(--rathe-space-3);
+  min-block-size: 2.5rem;
+  inline-size: 100%;
+  cursor: pointer;
+  transition:
+    border-color var(--rathe-duration-fast) var(--rathe-ease),
+    background-color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-select__control:hover:not(:disabled) {
+  border-color: var(--rathe-ink-faint);
+}
+
+.rathe-select__control:disabled {
+  background: var(--rathe-surface-sunk);
+  color: var(--rathe-ink-faint);
+  border-color: var(--rathe-rule);
+  cursor: not-allowed;
+}
+
+.rathe-select__control--invalid {
+  border-color: var(--rathe-danger);
+  border-width: 2px;
+  background: var(--rathe-danger-soft);
+}
+
+/* The option list is painted by the OS on most platforms; where it is not,
+   this keeps it on the token ground instead of the UA default white. */
+.rathe-select__control option {
+  color: var(--rathe-ink);
+  background: var(--rathe-paper);
+}
+
+.rathe-select__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-1);
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  font-weight: 600;
+  color: var(--rathe-danger);
+}
+
+.rathe-select__error-icon {
+  flex: none;
+  margin-block-start: 0.15em;
+}
+
+@media (pointer: coarse) {
+  .rathe-select__control {
+    min-block-size: 44px;
+    padding-block: var(--rathe-space-3);
+  }
+}

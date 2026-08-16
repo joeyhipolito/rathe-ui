@@ -1,0 +1,168 @@
+.rathe-event-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(11rem, 2fr) minmax(9rem, 1fr) minmax(8rem, 1fr) auto;
+  align-items: center;
+  gap: var(--rathe-space-4);
+  padding: var(--rathe-space-3) var(--rathe-space-4);
+  border-bottom: 1px solid var(--rathe-rule);
+  background: var(--rathe-paper);
+  color: var(--rathe-ink);
+  font-family: var(--rathe-font-ui);
+  transition: background-color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-event-row:has(.rathe-event-row__link):hover {
+  background: var(--rathe-surface);
+}
+
+.rathe-event-row__tier {
+  display: inline-flex;
+}
+
+.rathe-event-row__identity {
+  display: grid;
+  gap: var(--rathe-space-1);
+  min-width: 0;
+}
+
+.rathe-event-row__name {
+  font-size: var(--rathe-text-base);
+  font-weight: 600;
+  line-height: var(--rathe-leading-snug);
+  overflow-wrap: anywhere;
+}
+
+.rathe-event-row__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rathe-event-row__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* The row is clickable, but the link is only the name. This overlay restores
+   the pointer target across the whole row without putting the date, venue,
+   format and seat count inside the link's accessible name. */
+.rathe-event-row__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.rathe-event-row__venue,
+.rathe-event-row__time,
+.rathe-event-row__rel {
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-event-row__when {
+  display: grid;
+  min-width: 0;
+}
+
+.rathe-event-row__time {
+  font-variant-numeric: tabular-nums;
+  color: var(--rathe-ink);
+}
+
+.rathe-event-row__play {
+  display: grid;
+  gap: var(--rathe-space-1);
+  min-width: 0;
+}
+
+.rathe-event-row__format {
+  font-size: var(--rathe-text-sm);
+  font-weight: 600;
+  line-height: var(--rathe-leading-snug);
+}
+
+.rathe-event-row__rel {
+  font-size: var(--rathe-text-xs);
+  letter-spacing: var(--rathe-tracking-caps);
+  text-transform: uppercase;
+}
+
+/* --- seats -------------------------------------------------------------- */
+.rathe-event-row__seats {
+  display: grid;
+  gap: var(--rathe-space-1);
+  justify-items: end;
+  padding: var(--rathe-space-1) var(--rathe-space-3);
+  border: 1px solid var(--rathe-rule);
+  border-radius: var(--rathe-radius-md);
+  text-align: end;
+  white-space: nowrap;
+}
+
+.rathe-event-row__seats-value {
+  font-size: var(--rathe-text-sm);
+  font-weight: 700;
+  line-height: var(--rathe-leading-tight);
+  font-variant-numeric: tabular-nums;
+}
+
+.rathe-event-row__seats-detail {
+  font-size: var(--rathe-text-xs);
+  line-height: var(--rathe-leading-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-event-row__seats--open {
+  background: var(--rathe-success-soft);
+  border-color: var(--rathe-success);
+}
+
+/* Three cues, only one of which is colour: the word "Full", a hatched ground
+   that survives greyscale, and a heavier rule. A store listing gets printed
+   and pinned to a wall more often than anyone expects. */
+.rathe-event-row__seats--full {
+  border-color: var(--rathe-rule-strong);
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--rathe-surface-sunk) 0,
+    var(--rathe-surface-sunk) 3px,
+    var(--rathe-surface) 3px,
+    var(--rathe-surface) 6px
+  );
+}
+
+.rathe-event-row--full .rathe-event-row__name {
+  color: var(--rathe-ink-muted);
+}
+
+@media (max-width: 52rem) {
+  .rathe-event-row {
+    grid-template-columns: auto 1fr;
+    gap: var(--rathe-space-2) var(--rathe-space-3);
+    align-items: start;
+  }
+
+  .rathe-event-row__identity {
+    grid-column: 2;
+  }
+
+  .rathe-event-row__when,
+  .rathe-event-row__play {
+    grid-column: 2;
+  }
+
+  .rathe-event-row__seats {
+    grid-column: 2;
+    justify-self: start;
+    justify-items: start;
+    text-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rathe-event-row {
+    transition: none;
+  }
+}

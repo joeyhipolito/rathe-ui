@@ -1,0 +1,146 @@
+/* The region carries `rathe` so the token layer, the shared :focus-visible
+   rule, and the reduced-motion guard reach the portalled subtree. The double
+   class beats `.rathe`'s own background so the fixed overlay stays see-through. */
+.rathe.rathe-toast-region {
+  position: fixed;
+  z-index: var(--rathe-z-toast);
+  display: flex;
+  flex-direction: column;
+  width: min(24rem, calc(100vw - var(--rathe-space-5)));
+  background: none;
+  /* The region spans a corner of the viewport; only the toasts themselves may
+     take pointer events, or an empty region would swallow clicks on the app. */
+  pointer-events: none;
+}
+
+.rathe-toast-region--top-right {
+  top: var(--rathe-space-4);
+  right: var(--rathe-space-4);
+}
+
+.rathe-toast-region--top-center {
+  top: var(--rathe-space-4);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rathe-toast-region--bottom-right {
+  bottom: var(--rathe-space-4);
+  right: var(--rathe-space-4);
+}
+
+.rathe-toast-region--bottom-center {
+  bottom: var(--rathe-space-4);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rathe-toast-region__live {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-3);
+}
+
+/* An empty live region collapses to zero height on its own — it is never
+   hidden with `display: none`, because a live region that is revealed at the
+   same moment it gains content is not announced. The gap between the two
+   regions is applied only when both are actually showing something. */
+.rathe-toast-region__live:not(:empty) + .rathe-toast-region__live:not(:empty) {
+  margin-top: var(--rathe-space-3);
+}
+
+.rathe-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-3);
+  padding: var(--rathe-space-3) var(--rathe-space-3) var(--rathe-space-3) var(--rathe-space-4);
+  border: 1px solid var(--rathe-rule);
+  border-left: 3px solid var(--rathe-ink-faint);
+  border-radius: var(--rathe-radius-md);
+  background: var(--rathe-surface);
+  color: var(--rathe-ink);
+  box-shadow: var(--rathe-shadow-md);
+  pointer-events: auto;
+  animation: rathe-toast-in var(--rathe-duration-base) var(--rathe-ease);
+}
+
+/* Variant is carried by a left rule plus the icon-free label in the SR-only
+   prefix, never by fill colour alone. */
+.rathe-toast--info {
+  border-left-color: var(--rathe-info);
+}
+
+.rathe-toast--success {
+  border-left-color: var(--rathe-success);
+}
+
+.rathe-toast--warning {
+  border-left-color: var(--rathe-warning);
+}
+
+.rathe-toast--danger {
+  border-left-color: var(--rathe-danger);
+  background: var(--rathe-danger-soft);
+}
+
+.rathe-toast__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.rathe-toast__title {
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  font-weight: 600;
+  line-height: var(--rathe-leading-snug);
+}
+
+.rathe-toast__description {
+  margin: var(--rathe-space-1) 0 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-toast__action {
+  flex: 0 0 auto;
+  padding: var(--rathe-space-1) var(--rathe-space-2);
+  border: 1px solid var(--rathe-rule-strong);
+  border-radius: var(--rathe-radius-sm);
+  background: transparent;
+  color: var(--rathe-ink);
+  font: inherit;
+  font-size: var(--rathe-text-sm);
+  cursor: pointer;
+}
+
+.rathe-toast__action:hover {
+  background: var(--rathe-surface-sunk);
+}
+
+.rathe-toast__close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--rathe-radius-sm);
+  background: transparent;
+  color: var(--rathe-ink-muted);
+  cursor: pointer;
+}
+
+.rathe-toast__close:hover {
+  background: var(--rathe-surface-sunk);
+  color: var(--rathe-ink);
+}
+
+@keyframes rathe-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--rathe-space-2) * -1));
+  }
+}

@@ -1,0 +1,155 @@
+.rathe-hero-panel {
+  display: grid;
+  gap: var(--rathe-space-4);
+  padding: var(--rathe-space-5);
+  border: 1px solid var(--rathe-rule);
+  border-radius: var(--rathe-radius-card);
+  background: var(--rathe-surface);
+  color: var(--rathe-ink);
+  font-family: var(--rathe-font-ui);
+}
+
+.rathe-hero-panel__header {
+  display: grid;
+  gap: var(--rathe-space-1);
+}
+
+/* The hero name is the one place in this panel that earns the display face:
+   it is a proper noun off a printed card, set once, at heading size. */
+.rathe-hero-panel__name {
+  margin: 0;
+  font-family: var(--rathe-font-display);
+  font-size: var(--rathe-text-lg);
+  font-weight: 700;
+  line-height: var(--rathe-leading-tight);
+  color: var(--rathe-ink);
+}
+
+.rathe-hero-panel__lineage {
+  display: flex;
+  align-items: center;
+  gap: var(--rathe-space-2);
+  margin: 0;
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-hero-panel__young {
+  padding: 0 var(--rathe-space-2);
+  border: 1px solid var(--rathe-rule-strong);
+  border-radius: var(--rathe-radius-full);
+  font-size: var(--rathe-text-xs);
+  font-weight: 700;
+  letter-spacing: var(--rathe-tracking-caps);
+  text-transform: uppercase;
+  color: var(--rathe-ink);
+}
+
+/* --- talents ------------------------------------------------------------ */
+.rathe-hero-panel__talents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rathe-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rathe-hero-panel__talent {
+  padding: var(--rathe-space-1) var(--rathe-space-3);
+  border: 1px solid var(--rathe-rule);
+  border-radius: var(--rathe-radius-full);
+  background: var(--rathe-surface-sunk);
+  color: var(--rathe-ink);
+  font-size: var(--rathe-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--rathe-tracking-caps);
+  line-height: var(--rathe-leading-snug);
+  text-transform: uppercase;
+}
+
+/* Talent tints use only the -soft grounds, which are the one family of colour
+   tokens that carries --rathe-ink at full contrast in both themes. The talent
+   name is always written out, so the tint is recall, not information. */
+.rathe-hero-panel__talent--light {
+  background: var(--rathe-gold-soft);
+  border-color: var(--rathe-gold);
+}
+
+.rathe-hero-panel__talent--shadow {
+  background: var(--rathe-surface-sunk);
+  border-color: var(--rathe-rule-strong);
+}
+
+.rathe-hero-panel__talent--elemental {
+  background: var(--rathe-success-soft);
+  border-color: var(--rathe-success);
+}
+
+.rathe-hero-panel__talent--draconic {
+  background: var(--rathe-blood-soft);
+  border-color: var(--rathe-blood);
+}
+
+.rathe-hero-panel__talent--chaos {
+  background: var(--rathe-warning-soft);
+  border-color: var(--rathe-warning);
+}
+
+/* --- stats -------------------------------------------------------------- */
+.rathe-hero-panel__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rathe-space-6);
+  margin: 0;
+  padding: var(--rathe-space-4) 0 0;
+  border-top: 1px solid var(--rathe-rule);
+}
+
+.rathe-hero-panel__stat {
+  display: grid;
+  gap: var(--rathe-space-1);
+}
+
+.rathe-hero-panel__stat-term {
+  display: grid;
+  gap: 0.125rem;
+  font-size: var(--rathe-text-xs);
+  font-weight: 700;
+  letter-spacing: var(--rathe-tracking-caps);
+  line-height: var(--rathe-leading-tight);
+  text-transform: uppercase;
+  color: var(--rathe-ink-muted);
+}
+
+/* The hint is the difference between a number a returning player recognises
+   and a number a new player can act on. It is small, but it is not decoration,
+   so it keeps a readable size rather than dropping to the caption step. */
+.rathe-hero-panel__stat-hint {
+  font-size: var(--rathe-text-xs);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--rathe-ink-faint);
+}
+
+.rathe-hero-panel__stat-value {
+  margin: 0;
+  font-size: var(--rathe-text-xl);
+  font-weight: 700;
+  line-height: var(--rathe-leading-tight);
+  font-variant-numeric: tabular-nums;
+  color: var(--rathe-ink);
+}
+
+.rathe-hero-panel__ability {
+  margin: 0;
+  padding: var(--rathe-space-4);
+  border-inline-start: 2px solid var(--rathe-blood);
+  border-radius: var(--rathe-radius-sm);
+  background: var(--rathe-surface-sunk);
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-body);
+  color: var(--rathe-ink);
+}

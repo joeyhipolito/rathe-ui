@@ -1,0 +1,167 @@
+.rathe-checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rathe-space-1);
+  font-family: var(--rathe-font-ui);
+}
+
+.rathe-checkbox__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-2);
+}
+
+/* The input and the mark share one grid cell so the mark sits over the box
+   without absolute positioning maths. */
+.rathe-checkbox__box {
+  display: inline-grid;
+  flex: none;
+  margin-block-start: 0.1em;
+}
+
+.rathe-checkbox__box > * {
+  grid-area: 1 / 1;
+}
+
+.rathe-checkbox__input {
+  appearance: none;
+  margin: 0;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  background: var(--rathe-paper);
+  border: 1px solid var(--rathe-rule-strong);
+  border-radius: var(--rathe-radius-sm);
+  cursor: pointer;
+  transition:
+    background-color var(--rathe-duration-fast) var(--rathe-ease),
+    border-color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-checkbox__input:hover:not(:disabled) {
+  border-color: var(--rathe-ink-faint);
+}
+
+.rathe-checkbox__input:checked,
+.rathe-checkbox__input:indeterminate {
+  background: var(--rathe-blood);
+  border-color: var(--rathe-blood);
+}
+
+.rathe-checkbox__input:checked:hover:not(:disabled),
+.rathe-checkbox__input:indeterminate:hover:not(:disabled) {
+  background: var(--rathe-blood-hover);
+  border-color: var(--rathe-blood-hover);
+}
+
+.rathe-checkbox__input:disabled {
+  background: var(--rathe-surface-sunk);
+  border-color: var(--rathe-rule);
+  cursor: not-allowed;
+}
+
+.rathe-checkbox__input:disabled:checked,
+.rathe-checkbox__input:disabled:indeterminate {
+  background: var(--rathe-ink-faint);
+  border-color: var(--rathe-ink-faint);
+}
+
+.rathe-checkbox__mark {
+  position: relative;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  pointer-events: none;
+}
+
+/* Tick: an L rotated 45deg, drawn in the ink that pairs with the filled box. */
+.rathe-checkbox__mark::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.2rem;
+  inset-inline-start: 0.42rem;
+  inline-size: 0.32rem;
+  block-size: 0.6rem;
+  border-inline-end: 2px solid var(--rathe-blood-ink);
+  border-block-end: 2px solid var(--rathe-blood-ink);
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+/* Mixed: a dash, visibly different from the tick rather than a dimmed one. */
+.rathe-checkbox__mark::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.55rem;
+  inset-inline-start: 0.27rem;
+  inline-size: 0.7rem;
+  border-block-start: 2px solid var(--rathe-blood-ink);
+  opacity: 0;
+}
+
+.rathe-checkbox__input:checked:not(:indeterminate) + .rathe-checkbox__mark::before {
+  opacity: 1;
+}
+
+.rathe-checkbox__input:indeterminate + .rathe-checkbox__mark::after {
+  opacity: 1;
+}
+
+.rathe-checkbox__label {
+  font-size: var(--rathe-text-base);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink);
+  cursor: pointer;
+}
+
+.rathe-checkbox--disabled .rathe-checkbox__label {
+  color: var(--rathe-ink-faint);
+  cursor: not-allowed;
+}
+
+.rathe-checkbox__required-mark {
+  margin-inline-start: var(--rathe-space-1);
+  color: var(--rathe-danger);
+}
+
+.rathe-checkbox__hint {
+  margin: 0;
+  padding-inline-start: calc(1.25rem + var(--rathe-space-2));
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  color: var(--rathe-ink-muted);
+}
+
+.rathe-checkbox--invalid .rathe-checkbox__input {
+  border-color: var(--rathe-danger);
+  border-width: 2px;
+}
+
+.rathe-checkbox__error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--rathe-space-1);
+  margin: 0;
+  padding-inline-start: calc(1.25rem + var(--rathe-space-2));
+  font-size: var(--rathe-text-sm);
+  line-height: var(--rathe-leading-snug);
+  font-weight: 600;
+  color: var(--rathe-danger);
+}
+
+.rathe-checkbox__error-icon {
+  flex: none;
+  margin-block-start: 0.15em;
+}
+
+/* Touch: the box itself stays 1.25rem for visual weight, so the label row
+   carries the 44px target and the label is part of it. */
+@media (pointer: coarse) {
+  .rathe-checkbox__row {
+    min-block-size: 44px;
+    align-items: center;
+    padding-block: var(--rathe-space-2);
+  }
+
+  .rathe-checkbox__box {
+    margin-block-start: 0;
+  }
+}

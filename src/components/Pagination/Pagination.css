@@ -1,0 +1,109 @@
+/* Pagination.
+
+   Targets are 2rem minimum on both axes. A store owner paging a standings list
+   on a phone at the back of a shop is not going to hit a 16px number. */
+
+.rathe-pagination {
+  font-family: var(--rathe-font-ui);
+  color: var(--rathe-ink);
+}
+
+.rathe-pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--rathe-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rathe-pagination__item {
+  display: flex;
+}
+
+.rathe-pagination__page,
+.rathe-pagination__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rathe-space-1);
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0 var(--rathe-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--rathe-radius-md);
+  background: none;
+  color: var(--rathe-ink-muted);
+  font-family: inherit;
+  font-size: var(--rathe-text-sm);
+  font-weight: 600;
+  /* Page numbers must not reflow the row as the digit count changes. */
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--rathe-duration-fast) var(--rathe-ease),
+    border-color var(--rathe-duration-fast) var(--rathe-ease),
+    color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-pagination__page:hover:not(:disabled),
+.rathe-pagination__control:hover:not(:disabled) {
+  background: var(--rathe-surface);
+  border-color: var(--rathe-rule);
+  color: var(--rathe-ink);
+}
+
+.rathe-pagination__page:focus-visible,
+.rathe-pagination__control:focus-visible {
+  outline: 2px solid var(--rathe-focus);
+  outline-offset: 2px;
+}
+
+/* The current page is marked twice over: a filled ground for sighted users and
+   aria-current="page" for everyone else. Neither one alone is enough. */
+.rathe-pagination__page--current,
+.rathe-pagination__page--current:hover {
+  background: var(--rathe-blood);
+  border-color: var(--rathe-blood);
+  color: var(--rathe-blood-ink);
+}
+
+.rathe-pagination__control:disabled {
+  color: var(--rathe-ink-faint);
+  cursor: default;
+  /* Opacity is not used: at 40% the label drops under 3:1 and the control stops
+     being readable rather than merely unavailable. */
+}
+
+.rathe-pagination__chevron {
+  font-size: var(--rathe-text-md);
+  line-height: 1;
+}
+
+.rathe-pagination__ellipsis {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding-bottom: var(--rathe-space-1);
+  color: var(--rathe-ink-faint);
+  font-size: var(--rathe-text-sm);
+  user-select: none;
+}
+
+/* Below the fold of a phone the word labels are the first thing to go; the
+   chevrons keep the controls usable at 320px. */
+@media (max-width: 30rem) {
+  .rathe-pagination__control-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

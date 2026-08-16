@@ -1,0 +1,137 @@
+.rathe-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rathe-space-2);
+  font-family: var(--rathe-font-ui);
+  font-weight: 600;
+  line-height: var(--rathe-leading-tight);
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: var(--rathe-radius-md);
+  cursor: pointer;
+  transition:
+    background-color var(--rathe-duration-fast) var(--rathe-ease),
+    border-color var(--rathe-duration-fast) var(--rathe-ease),
+    color var(--rathe-duration-fast) var(--rathe-ease);
+}
+
+.rathe-button--sm {
+  font-size: var(--rathe-text-sm);
+  padding: var(--rathe-space-2) var(--rathe-space-3);
+  min-block-size: 2rem;
+}
+
+.rathe-button--md {
+  font-size: var(--rathe-text-base);
+  padding: var(--rathe-space-3) var(--rathe-space-4);
+  min-block-size: 2.5rem;
+}
+
+/* --- variants ----------------------------------------------------------- */
+
+.rathe-button--primary {
+  background: var(--rathe-blood);
+  color: var(--rathe-blood-ink);
+  border-color: var(--rathe-blood);
+  box-shadow: var(--rathe-shadow-sm);
+}
+
+.rathe-button--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--rathe-blood-hover);
+  border-color: var(--rathe-blood-hover);
+}
+
+.rathe-button--secondary {
+  background: var(--rathe-surface);
+  color: var(--rathe-ink);
+  border-color: var(--rathe-rule-strong);
+  box-shadow: var(--rathe-shadow-sm);
+}
+
+.rathe-button--secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--rathe-surface-sunk);
+  border-color: var(--rathe-ink-faint);
+}
+
+.rathe-button--ghost {
+  background: transparent;
+  color: var(--rathe-ink);
+  border-color: transparent;
+}
+
+.rathe-button--ghost:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--rathe-surface-sunk);
+}
+
+/* Error red, never the brand vermilion — see the palette note in tokens.css. */
+.rathe-button--danger {
+  background: var(--rathe-danger);
+  color: var(--rathe-danger-ink);
+  border-color: var(--rathe-danger);
+  box-shadow: var(--rathe-shadow-sm);
+}
+
+/* No danger-hover token exists, and inventing a literal would put a colour
+   outside the token layer. Mixing toward ink stays inside it. */
+.rathe-button--danger:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: color-mix(in oklab, var(--rathe-danger) 86%, var(--rathe-ink));
+  border-color: color-mix(in oklab, var(--rathe-danger) 86%, var(--rathe-ink));
+}
+
+/* --- states ------------------------------------------------------------- */
+
+.rathe-button:disabled {
+  background: var(--rathe-surface-sunk);
+  color: var(--rathe-ink-faint);
+  border-color: var(--rathe-rule);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.rathe-button--loading {
+  cursor: progress;
+}
+
+.rathe-button__label {
+  display: inline-block;
+}
+
+.rathe-button__spinner {
+  inline-size: 0.875em;
+  block-size: 0.875em;
+  flex: none;
+  border: 2px solid currentColor;
+  border-block-start-color: transparent;
+  border-radius: var(--rathe-radius-full);
+  animation: rathe-button-spin 700ms linear infinite;
+}
+
+@keyframes rathe-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* tokens.css guards everything inside `.rathe`; this repeats the guard for the
+   button because it also ships into Bootstrap templates that mount it outside
+   that scope. The busy state is still carried by aria-busy and the label. */
+@media (prefers-reduced-motion: reduce) {
+  .rathe-button__spinner {
+    animation: none;
+  }
+}
+
+/* Touch: fingers, gloves and a store counter. Grow to the 44px floor rather
+   than relying on the desktop padding. */
+@media (pointer: coarse) {
+  .rathe-button {
+    min-block-size: 44px;
+    min-inline-size: 44px;
+    padding-inline: var(--rathe-space-4);
+  }
+
+  .rathe-button--sm {
+    padding-block: var(--rathe-space-2);
+  }
+}

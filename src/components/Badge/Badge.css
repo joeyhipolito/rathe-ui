@@ -1,0 +1,103 @@
+/* Badge — status pill.
+
+   Two decisions shape this file:
+
+   1. The label is always `--rathe-ink`, not the variant hue. Tinted label text
+      on a tinted ground is the usual way status pills end up at 2.5:1; putting
+      the hue in the ground, the border and the glyph instead keeps the pill
+      obviously coloured while the word itself stays at full contrast on both
+      themes.
+   2. Grounds are soft, never saturated. A standings column with eight solid
+      pills in it becomes a colour chart, and the data stops being the loudest
+      thing on screen. */
+
+.rathe-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rathe-space-1);
+  max-width: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--rathe-radius-full);
+  color: var(--rathe-ink);
+  font-family: var(--rathe-font-ui);
+  font-weight: 600;
+  line-height: var(--rathe-leading-tight);
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.rathe-badge__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rathe-badge__glyph {
+  flex: none;
+  color: var(--rathe-badge-accent);
+  /* Optically the glyph sits a touch high against a capital; nudging it keeps
+     the pill's centre line on the label, not on the mark. */
+  line-height: 1;
+  transform: translateY(0.5px);
+}
+
+.rathe-badge__dot {
+  flex: none;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: var(--rathe-radius-full);
+  background: var(--rathe-badge-accent);
+}
+
+/* --- sizes ------------------------------------------------------------- */
+
+.rathe-badge--sm {
+  min-height: 1.25rem;
+  padding: 0 var(--rathe-space-2);
+  font-size: var(--rathe-text-xs);
+}
+
+.rathe-badge--md {
+  min-height: 1.5rem;
+  padding: var(--rathe-space-1) var(--rathe-space-3);
+  font-size: var(--rathe-text-sm);
+}
+
+/* --- variants ---------------------------------------------------------- */
+
+.rathe-badge--neutral {
+  --rathe-badge-accent: var(--rathe-ink-faint);
+  background: var(--rathe-surface-sunk);
+  border-color: var(--rathe-rule);
+}
+
+.rathe-badge--info {
+  --rathe-badge-accent: var(--rathe-info);
+  background: var(--rathe-info-soft);
+  border-color: var(--rathe-info);
+}
+
+.rathe-badge--success {
+  --rathe-badge-accent: var(--rathe-success);
+  background: var(--rathe-success-soft);
+  border-color: var(--rathe-success);
+}
+
+.rathe-badge--warning {
+  --rathe-badge-accent: var(--rathe-warning);
+  background: var(--rathe-warning-soft);
+  border-color: var(--rathe-warning);
+}
+
+.rathe-badge--danger {
+  --rathe-badge-accent: var(--rathe-danger);
+  background: var(--rathe-danger-soft);
+  border-color: var(--rathe-danger);
+}
+
+/* Brand is the blood vermilion, kept away from danger on purpose — see the
+   palette note in tokens.css. */
+.rathe-badge--brand {
+  --rathe-badge-accent: var(--rathe-blood);
+  background: var(--rathe-blood-soft);
+  border-color: var(--rathe-blood);
+}
