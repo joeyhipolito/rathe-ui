@@ -12,7 +12,9 @@
     "test:a11y": "vitest run --testNamePattern='a11y'",
     "type-check": "tsc --noEmit",
     "contrast": "tsx scripts/check-contrast.ts",
-    "audit:stories": "node scripts/audit-stories.mjs"
+    "audit:stories": "node scripts/audit-stories.mjs",
+    "build:scene": "node scripts/build-scene.mjs",
+    "audit:scene": "node scripts/check-scene-contrast.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
