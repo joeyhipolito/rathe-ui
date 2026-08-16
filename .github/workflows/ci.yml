@@ -38,6 +38,18 @@ jobs:
       - name: Build Storybook
         run: bun run build-storybook
 
+      - name: Install Playwright browser
+        run: bunx playwright install --with-deps chromium
+
+      # The per-component tests check components in isolation. This checks what
+      # a consumer actually renders, every story in both themes, which is where
+      # composition failures and theme-specific contrast bugs surface.
+      - name: Accessibility audit, every story, light theme
+        run: bun run audit:stories
+
+      - name: Accessibility audit, every story, dark theme
+        run: node scripts/audit-stories.mjs --theme dark
+
       - name: Upload Storybook build
         uses: actions/upload-artifact@v4
         with:

@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "test:a11y": "vitest run --testNamePattern='a11y'",
     "type-check": "tsc --noEmit",
-    "contrast": "tsx scripts/check-contrast.ts"
+    "contrast": "tsx scripts/check-contrast.ts",
+    "audit:stories": "node scripts/audit-stories.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -31,8 +32,10 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "axe-core": "^4.13.0",
     "culori": "^4.0.1",
     "jsdom": "^25.0.1",
+    "playwright": "^1.62.1",
     "storybook": "^8.6.14",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",

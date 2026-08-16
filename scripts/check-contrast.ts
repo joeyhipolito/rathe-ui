@@ -48,10 +48,12 @@ const PAIRS: Pair[] = [
   { fg: "--rathe-ink-muted", bg: "--rathe-paper", level: "AA-normal", note: "metadata and captions" },
   { fg: "--rathe-ink-muted", bg: "--rathe-surface", level: "AA-normal", note: "metadata on surface" },
 
-  // ink-faint is deliberately held to the large-text threshold only. It is
-  // used for timestamps at >=18.66px bold or >=24px, never for body copy.
-  // If that ever changes this line must change with it.
-  { fg: "--rathe-ink-faint", bg: "--rathe-paper", level: "AA-large", note: "faint labels, large sizes only" },
+  // Originally held to the large-text threshold on the assumption it was only
+  // used for display-size timestamps. The story audit disproved that: it is
+  // used at 12px for card class and stat labels. Now held to AA-normal, which
+  // is the only safe rule for a token with this many call sites.
+  { fg: "--rathe-ink-faint", bg: "--rathe-paper", level: "AA-normal", note: "faint labels" },
+  { fg: "--rathe-ink-faint", bg: "--rathe-surface", level: "AA-normal", note: "faint labels on surface" },
 
   { fg: "--rathe-blood-ink", bg: "--rathe-blood", level: "AA-normal", note: "label on primary button" },
   { fg: "--rathe-danger-ink", bg: "--rathe-danger", level: "AA-normal", note: "label on destructive button" },

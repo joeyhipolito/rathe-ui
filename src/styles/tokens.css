@@ -30,7 +30,11 @@
      carry a small amount of chroma toward 60deg rather than sitting at 0. */
   --rathe-ink:          oklch(0.18 0.012 55);
   --rathe-ink-muted:    oklch(0.44 0.012 55);
-  --rathe-ink-faint:    oklch(0.60 0.010 55);
+  /* Held to 4.5:1, not the large-text 3:1 it originally carried. The story
+     audit found it used at 12px in CardTile for the card class and the
+     stat labels, which are informational text, and a token that is only
+     safe at display sizes is a trap across 25 usages. */
+  --rathe-ink-faint:    oklch(0.54 0.010 55);
   --rathe-paper:        oklch(0.99 0.004 70);
   --rathe-surface:      oklch(0.965 0.007 70);
   --rathe-surface-sunk: oklch(0.94 0.008 70);
@@ -166,7 +170,7 @@
   :root:not([data-theme="light"]) {
     --rathe-ink:          oklch(0.94 0.010 70);
     --rathe-ink-muted:    oklch(0.74 0.012 65);
-    --rathe-ink-faint:    oklch(0.58 0.012 60);
+    --rathe-ink-faint:    oklch(0.61 0.012 60);
     --rathe-paper:        oklch(0.17 0.012 40);
     --rathe-surface:      oklch(0.21 0.013 40);
     --rathe-surface-sunk: oklch(0.14 0.012 40);
@@ -215,7 +219,7 @@
 :root[data-theme="dark"] {
   --rathe-ink:          oklch(0.94 0.010 70);
   --rathe-ink-muted:    oklch(0.74 0.012 65);
-  --rathe-ink-faint:    oklch(0.58 0.012 60);
+  --rathe-ink-faint:    oklch(0.61 0.012 60);
   --rathe-paper:        oklch(0.17 0.012 40);
   --rathe-surface:      oklch(0.21 0.013 40);
   --rathe-surface-sunk: oklch(0.14 0.012 40);
